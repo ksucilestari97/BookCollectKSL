@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Dashboard Anggota | Perpustakaan Nusantara
+    </title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            background: #f4efe5;
+
+            color: #35291f;
+
+        }
+
+
+        header {
+
+            background: #3b2418;
+
+            color: #f7ead3;
+
+            padding: 20px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            border-bottom: 4px solid #b58b4b;
+
+        }
+
+
+        .logo {
+
+            font-size: 24px;
+
+        }
+
+
+        .logout {
+
+            background: transparent;
+
+            border: 1px solid #c7a976;
+
+            color: #f7ead3;
+
+            padding: 8px 15px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+        }
+
+
+        .container {
+
+            width: 86%;
+
+            max-width: 1150px;
+
+            margin: 40px auto;
+
+        }
+
+
+        .welcome {
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .welcome h1 {
+
+            font-size: 34px;
+
+            font-weight: normal;
+
+            color: #4a2f20;
+
+        }
+
+
+        .welcome p {
+
+            font-family: Arial, sans-serif;
+
+            color: #75685d;
+
+            margin-top: 5px;
+
+        }
+
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .stat {
+
+            background: #fffaf1;
+
+            border: 1px solid #d6c5a8;
+
+            padding: 25px;
+
+            border-radius: 8px;
+
+        }
+
+
+        .stat-number {
+
+            font-size: 32px;
+
+            color: #5a3824;
+
+        }
+
+
+        .stat-title {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            color: #75685d;
+
+        }
+
+
+        .section {
+
+            background: #fffaf1;
+
+            border: 1px solid #d6c5a8;
+
+            border-radius: 8px;
+
+            padding: 30px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .section h2 {
+
+            font-weight: normal;
+
+            color: #4a2f20;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+        }
+
+
+        th {
+
+            text-align: left;
+
+            background: #eee2cf;
+
+            padding: 12px;
+
+        }
+
+
+        td {
+
+            padding: 12px;
+
+            border-bottom: 1px solid #ded0bb;
+
+        }
+
+
+        .status {
+
+            padding: 5px 9px;
+
+            border-radius: 4px;
+
+            font-size: 11px;
+
+        }
+
+
+        .pending {
+
+            background: #f3e1b9;
+
+            color: #765622;
+
+        }
+
+
+        .approved {
+
+            background: #d8ead8;
+
+            color: #3d673d;
+
+        }
+
+
+        .rejected {
+
+            background: #efd1cc;
+
+            color: #873c32;
+
+        }
+
+
+        .button {
+
+            display: inline-block;
+
+            background: #5a3824;
+
+            color: white;
+
+            padding: 11px 18px;
+
+            border-radius: 5px;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+        }
+
+
+        @media(max-width:700px) {
+
+            .stats {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            table {
+
+                display: block;
+
+                overflow-x: auto;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        📚 Perpustakaan Nusantara
+    </div>
+
+
+    <button
+        class="logout"
+        onclick="logout()"
+    >
+
+        Keluar
+
+    </button>
+
+</header>
+
+
+
+<main class="container">
+
+
+    <div class="welcome">
+
+        <h1>
+            Selamat Datang,
+            <span id="namaAnggota">
+                Anggota
+            </span>
+        </h1>
+
+        <p>
+            Kelola peminjaman buku Anda
+            melalui halaman ini.
+        </p>
+
+    </div>
+
+
+
+    <div class="stats">
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="jumlahPinjaman"
+            >
+                0
+            </div>
+
+            <div class="stat-title">
+                Buku Dipinjam
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-number">
+                0
+            </div>
+
+            <div class="stat-title">
+                Menunggu Persetujuan
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-number">
+                0
+            </div>
+
+            <div class="stat-title">
+                Riwayat Peminjaman
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <section class="section">
+
+
+        <h2>
+            📖 Peminjaman Saya
+        </h2>
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Buku
+                    </th>
+
+                    <th>
+                        Tanggal
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="loanTable">
+
+            </tbody>
+
+
+        </table>
+
+
+    </section>
+
+
+
+    <a
+        href="index.html"
+        class="button"
+    >
+
+        🔍 Cari Buku
+
+    </a>
+
+
+</main>
+
+
+
+<script>
+
+
+/* CEK LOGIN */
+
+if (
+    localStorage.getItem(
+        "loginAnggota"
+    ) !== "true"
+) {
+
+    window.location.href =
+        "login-anggota.html";
+
+}
+
+
+/* NAMA */
+
+document
+    .getElementById("namaAnggota")
+    .textContent =
+    localStorage.getItem(
+        "namaAnggota"
+    ) || "Anggota";
+
+
+
+/* DATA PEMINJAMAN */
+
+function tampilkanPeminjaman() {
+
+
+    const loans =
+        JSON.parse(
+            localStorage.getItem(
+                "peminjaman"
+            )
+        ) || [];
+
+
+    const table =
+        document.getElementById(
+            "loanTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    loans.forEach(
+        function(loan) {
+
+
+            let statusClass =
+                "pending";
+
+
+            if (
+                loan.status ===
+                "Disetujui"
+            ) {
+
+                statusClass =
+                    "approved";
+
+            }
+
+
+            if (
+                loan.status ===
+                "Ditolak"
+            ) {
+
+                statusClass =
+                    "rejected";
+
+            }
+
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        ${loan.book}
+                    </td>
+
+                    <td>
+                        ${loan.date}
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="status ${statusClass}"
+                        >
+                            ${loan.status}
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+}
+
+
+tampilkanPeminjaman();
+
+
+
+/* LOGOUT */
+
+function logout() {
+
+    localStorage.removeItem(
+        "loginAnggota"
+    );
+
+    localStorage.removeItem(
+        "namaAnggota"
+    );
+
+
+    window.location.href =
+        "login-anggota.html";
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
