@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Dashboard Petugas | Perpustakaan Nusantara
+    </title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            background: #f4efe5;
+
+            color: #35291f;
+
+        }
+
+
+        header {
+
+            background: #3b2418;
+
+            color: #f7ead3;
+
+            padding: 18px 6%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            border-bottom:
+                4px solid #b58b4b;
+
+        }
+
+
+        .logo {
+
+            font-size: 23px;
+
+        }
+
+
+        .logout {
+
+            background: transparent;
+
+            border:
+                1px solid #c7a976;
+
+            color: white;
+
+            padding:
+                8px 15px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+        }
+
+
+        .container {
+
+            width: 88%;
+
+            max-width: 1200px;
+
+            margin: 35px auto;
+
+        }
+
+
+        .title {
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .title h1 {
+
+            font-size: 34px;
+
+            font-weight: normal;
+
+            color: #4a2f20;
+
+        }
+
+
+        .title p {
+
+            font-family: Arial, sans-serif;
+
+            color: #76695e;
+
+            margin-top: 5px;
+
+        }
+
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .stat {
+
+            background: #fffaf1;
+
+            border:
+                1px solid #d6c5a8;
+
+            border-radius: 7px;
+
+            padding: 22px;
+
+        }
+
+
+        .stat-number {
+
+            font-size: 30px;
+
+            color: #5a3824;
+
+        }
+
+
+        .stat-text {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            color: #75685d;
+
+        }
+
+
+        .panel {
+
+            background: #fffaf1;
+
+            border:
+                1px solid #d6c5a8;
+
+            border-radius: 8px;
+
+            padding: 30px;
+
+        }
+
+
+        .panel h2 {
+
+            font-weight: normal;
+
+            color: #4a2f20;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+        }
+
+
+        th {
+
+            text-align: left;
+
+            background: #eee2cf;
+
+            padding: 13px;
+
+        }
+
+
+        td {
+
+            padding: 13px;
+
+            border-bottom:
+                1px solid #ded0bb;
+
+        }
+
+
+        .btn {
+
+            border: none;
+
+            border-radius: 4px;
+
+            padding: 7px 11px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 11px;
+
+            cursor: pointer;
+
+            margin-right: 4px;
+
+        }
+
+
+        .approve {
+
+            background: #557b55;
+
+            color: white;
+
+        }
+
+
+        .reject {
+
+            background: #98483e;
+
+            color: white;
+
+        }
+
+
+        .approved {
+
+            color: #46704a;
+
+            font-weight: bold;
+
+        }
+
+
+        .rejected {
+
+            color: #9b3c32;
+
+            font-weight: bold;
+
+        }
+
+
+        .pending {
+
+            color: #99702e;
+
+            font-weight: bold;
+
+        }
+
+
+        .empty {
+
+            text-align: center;
+
+            color: #827568;
+
+            padding: 35px;
+
+        }
+
+
+        @media(max-width:850px) {
+
+            .stats {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+            table {
+
+                display: block;
+
+                overflow-x: auto;
+
+            }
+
+        }
+
+
+        @media(max-width:500px) {
+
+            .stats {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+
+    <div class="logo">
+        📚 Perpustakaan Nusantara
+    </div>
+
+
+    <button
+        class="logout"
+        onclick="logout()"
+    >
+
+        Keluar
+
+    </button>
+
+
+</header>
+
+
+
+<main class="container">
+
+
+    <div class="title">
+
+        <h1>
+            Dashboard Petugas
+        </h1>
+
+        <p>
+            Kelola permintaan peminjaman
+            buku anggota.
+        </p>
+
+    </div>
+
+
+
+    <!-- STATISTIK -->
+
+    <div class="stats">
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="total"
+            >
+                0
+            </div>
+
+            <div class="stat-text">
+                Total Permintaan
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="pending"
+            >
+                0
+            </div>
+
+            <div class="stat-text">
+                Menunggu Persetujuan
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="approved"
+            >
+                0
+            </div>
+
+            <div class="stat-text">
+                Disetujui
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div
+                class="stat-number"
+                id="rejected"
+            >
+                0
+            </div>
+
+            <div class="stat-text">
+                Ditolak
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- PEMINJAMAN -->
+
+    <section class="panel">
+
+
+        <h2>
+            📋 Permintaan Peminjaman
+        </h2>
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Anggota
+                    </th>
+
+                    <th>
+                        Buku
+                    </th>
+
+                    <th>
+                        Tanggal
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Aksi
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody
+                id="loanTable"
+            >
+
+            </tbody>
+
+
+        </table>
+
+
+    </section>
+
+
+</main>
+
+
+
+<script>
+
+
+/* CEK LOGIN PETUGAS */
+
+if (
+    localStorage.getItem(
+        "loginPetugas"
+    ) !== "true"
+) {
+
+    window.location.href =
+        "login-petugas.html";
+
+}
+
+
+
+/* TAMPILKAN DATA */
+
+function tampilkanData() {
+
+
+    const loans =
+        JSON.parse(
+            localStorage.getItem(
+                "peminjaman"
+            )
+        ) || [];
+
+
+    const table =
+        document.getElementById(
+            "loanTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    let pending = 0;
+
+    let approved = 0;
+
+    let rejected = 0;
+
+
+
+    loans.forEach(
+        function(loan, index) {
+
+
+            if (
+                loan.status ===
+                "Menunggu"
+            ) {
+
+                pending++;
+
+            }
+
+
+            if (
+                loan.status ===
+                "Disetujui"
+            ) {
+
+                approved++;
+
+            }
+
+
+            if (
+                loan.status ===
+                "Ditolak"
+            ) {
+
+                rejected++;
+
+            }
+
+
+
+            let action = "";
+
+
+            if (
+                loan.status ===
+                "Menunggu"
+            ) {
+
+
+                action = `
+
+                    <button
+                        class="btn approve"
+                        onclick="ubahStatus(${index}, 'Disetujui')"
+                    >
+                        Setujui
+                    </button>
+
+                    <button
+                        class="btn reject"
+                        onclick="ubahStatus(${index}, 'Ditolak')"
+                    >
+                        Tolak
+                    </button>
+
+                `;
+
+            }
+
+
+            else {
+
+                action = "-";
+
+            }
+
+
+
+            let statusClass =
+                "pending";
+
+
+            if (
+                loan.status ===
+                "Disetujui"
+            ) {
+
+                statusClass =
+                    "approved";
+
+            }
+
+
+            if (
+                loan.status ===
+                "Ditolak"
+            ) {
+
+                statusClass =
+                    "rejected";
+
+            }
+
+
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        ${loan.member}
+                    </td>
+
+                    <td>
+                        ${loan.book}
+                    </td>
+
+                    <td>
+                        ${loan.date}
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="${statusClass}"
+                        >
+                            ${loan.status}
+                        </span>
+
+                    </td>
+
+                    <td>
+                        ${action}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+
+
+    if (
+        loans.length === 0
+    ) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="empty"
+                >
+
+                    Belum ada permintaan
+                    peminjaman buku.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+
+
+    document
+        .getElementById("total")
+        .textContent =
+        loans.length;
+
+
+    document
+        .getElementById("pending")
+        .textContent =
+        pending;
+
+
+    document
+        .getElementById("approved")
+        .textContent =
+        approved;
+
+
+    document
+        .getElementById("rejected")
+        .textContent =
+        rejected;
+
+}
+
+
+
+/* UBAH STATUS */
+
+function ubahStatus(
+    index,
+    status
+) {
+
+
+    const loans =
+        JSON.parse(
+            localStorage.getItem(
+                "peminjaman"
+            )
+        ) || [];
+
+
+    loans[index].status =
+        status;
+
+
+    localStorage.setItem(
+        "peminjaman",
+        JSON.stringify(loans)
+    );
+
+
+    tampilkanData();
+
+
+    alert(
+        "Status peminjaman berhasil diubah menjadi: " +
+        status
+    );
+
+}
+
+
+
+/* LOGOUT */
+
+function logout() {
+
+
+    localStorage.removeItem(
+        "loginPetugas"
+    );
+
+
+    window.location.href =
+        "login-petugas.html";
+
+}
+
+
+tampilkanData();
+
+
+</script>
+
+
+</body>
+
+</html>
