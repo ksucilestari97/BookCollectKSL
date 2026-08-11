@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Login Anggota | Perpustakaan Nusantara</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            background: #f4efe5;
+
+            color: #35291f;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .login-container {
+
+            width: 90%;
+
+            max-width: 430px;
+
+            background: #fffaf1;
+
+            border: 1px solid #d6c5a8;
+
+            border-radius: 10px;
+
+            padding: 45px 40px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(60, 40, 20, .15);
+
+            text-align: center;
+
+        }
+
+
+        .logo {
+
+            font-size: 50px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        h1 {
+
+            font-size: 28px;
+
+            font-weight: normal;
+
+            color: #4a2f20;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .subtitle {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            color: #817366;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .ornament {
+
+            color: #b58b4b;
+
+            font-size: 22px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .form-group {
+
+            text-align: left;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            color: #5e5045;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #cdbda6;
+
+            border-radius: 5px;
+
+            background: #fffdf8;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 14px;
+
+            outline: none;
+
+        }
+
+
+        input:focus {
+
+            border-color: #9b7746;
+
+        }
+
+
+        .login-button {
+
+            width: 100%;
+
+            padding: 13px;
+
+            margin-top: 10px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            background: #5a3824;
+
+            color: white;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+        }
+
+
+        .login-button:hover {
+
+            background: #402819;
+
+        }
+
+
+        .back {
+
+            display: block;
+
+            margin-top: 22px;
+
+            color: #755331;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+        }
+
+
+        .back:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        .demo {
+
+            margin-top: 25px;
+
+            padding: 12px;
+
+            background: #eee2cf;
+
+            border-radius: 5px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 11px;
+
+            color: #6d5c4d;
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-container">
+
+
+    <div class="logo">
+        📚
+    </div>
+
+
+    <h1>
+        Login Anggota
+    </h1>
+
+
+    <p class="subtitle">
+        Perpustakaan Nusantara
+    </p>
+
+
+    <div class="ornament">
+        ❦
+    </div>
+
+
+    <form
+        onsubmit="loginAnggota(event)"
+    >
+
+
+        <div class="form-group">
+
+            <label>
+                Email / ID Anggota
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Masukkan ID anggota"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Masukkan password"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="login-button"
+        >
+
+            Masuk sebagai Anggota
+
+        </button>
+
+
+    </form>
+
+
+    <div class="demo">
+
+        <strong>Akun Demo</strong><br><br>
+
+        ID Anggota: <b>ANG001</b><br>
+
+        Password: <b>123456</b>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back"
+    >
+
+        ← Kembali ke Beranda
+
+    </a>
+
+
+</div>
+
+
+
+<script>
+
+
+function loginAnggota(event) {
+
+    event.preventDefault();
+
+
+    const username =
+        document.getElementById("username").value;
+
+
+    const password =
+        document.getElementById("password").value;
+
+
+    if (
+        username === "ANG001" &&
+        password === "123456"
+    ) {
+
+        localStorage.setItem(
+            "loginAnggota",
+            "true"
+        );
+
+
+        localStorage.setItem(
+            "namaAnggota",
+            "Anggota Demo"
+        );
+
+
+        window.location.href =
+            "dashboard-anggota.html";
+
+    }
+
+    else {
+
+        alert(
+            "ID anggota atau password salah."
+        );
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
