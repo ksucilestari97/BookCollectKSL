@@ -1,0 +1,993 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detail Buku | Perpustakaan Nusantara</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            background: #f4efe5;
+            color: #35291f;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            background: #3b2418;
+            color: #f7ead3;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #b58b4b;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 35px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #d7bb86;
+            display: block;
+            margin-top: 3px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #f7ead3;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #d8b46a;
+        }
+
+
+        /* ================= BREADCRUMB ================= */
+
+        .breadcrumb {
+            width: 86%;
+            max-width: 1200px;
+            margin: 25px auto 0;
+
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            color: #806d5d;
+        }
+
+        .breadcrumb a {
+            color: #79502e;
+            text-decoration: none;
+        }
+
+
+        /* ================= DETAIL ================= */
+
+        .book-detail {
+            width: 86%;
+            max-width: 1200px;
+            margin: 25px auto 60px;
+
+            background: #fffaf1;
+
+            border: 1px solid #d6c5a8;
+            border-radius: 8px;
+
+            padding: 45px;
+
+            display: grid;
+            grid-template-columns: 330px 1fr;
+
+            gap: 55px;
+
+            box-shadow: 0 8px 25px rgba(60, 40, 20, .10);
+        }
+
+
+        /* ================= COVER ================= */
+
+        .book-cover {
+            text-align: center;
+        }
+
+        .book-cover img {
+            width: 280px;
+            height: 400px;
+
+            object-fit: cover;
+
+            border-radius: 4px;
+
+            box-shadow:
+                0 8px 20px rgba(0,0,0,.25);
+
+            transition: .3s;
+        }
+
+        .book-cover img:hover {
+            transform: scale(1.02);
+        }
+
+
+        /* ================= BOOK INFO ================= */
+
+        .category {
+            display: inline-block;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 11px;
+
+            color: #9a7037;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 12px;
+        }
+
+        .book-info h2 {
+            font-size: 42px;
+
+            font-weight: normal;
+
+            color: #40291d;
+
+            line-height: 1.15;
+
+            margin-bottom: 10px;
+        }
+
+        .author {
+            font-family: Arial, sans-serif;
+
+            color: #75685d;
+
+            font-size: 16px;
+
+            margin-bottom: 18px;
+        }
+
+        .author strong {
+            color: #4e392b;
+        }
+
+
+        /* ================= RATING ================= */
+
+        .rating {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+        }
+
+        .stars {
+            color: #b28336;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 20px;
+
+            letter-spacing: 2px;
+        }
+
+        .rating-number {
+            font-family: Arial, sans-serif;
+
+            color: #67594d;
+
+            font-size: 14px;
+        }
+
+
+        /* ================= DIVIDER ================= */
+
+        .divider {
+            width: 100%;
+
+            height: 1px;
+
+            background: #d8c8ae;
+
+            margin: 20px 0 25px;
+        }
+
+
+        /* ================= SINOPSIS ================= */
+
+        .description h3 {
+            font-size: 22px;
+
+            font-weight: normal;
+
+            color: #4a2f20;
+
+            margin-bottom: 12px;
+        }
+
+        .description p {
+            font-family: Arial, sans-serif;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+
+            color: #5f534a;
+
+            text-align: justify;
+        }
+
+
+        /* ================= BOOK DATA ================= */
+
+        .book-data {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 12px 30px;
+
+            margin-top: 25px;
+        }
+
+        .data-item {
+            border-bottom: 1px solid #e0d3bf;
+
+            padding: 10px 0;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+        }
+
+        .data-item span {
+            display: block;
+
+            color: #88786a;
+
+            margin-bottom: 4px;
+        }
+
+        .data-item strong {
+            color: #493529;
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .actions {
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 13px 25px;
+
+            border-radius: 5px;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+            border: none;
+        }
+
+        .btn-primary {
+            background: #5a3824;
+
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3e2519;
+        }
+
+        .btn-secondary {
+            border: 1px solid #9e8158;
+
+            color: #65472f;
+
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: #eee2cf;
+        }
+
+
+        /* ================= RELATED BOOKS ================= */
+
+        .related {
+            width: 86%;
+            max-width: 1200px;
+
+            margin: 0 auto 70px;
+        }
+
+        .related-title {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        .related-title h2 {
+            font-size: 30px;
+
+            font-weight: normal;
+
+            color: #4a2f20;
+        }
+
+        .ornament {
+            color: #b58b4b;
+
+            font-size: 22px;
+
+            margin-top: 8px;
+        }
+
+        .related-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 22px;
+        }
+
+        .related-card {
+            background: #fffaf1;
+
+            border: 1px solid #d6c5a8;
+
+            border-radius: 6px;
+
+            overflow: hidden;
+
+            transition: .3s;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow: 0 8px 20px rgba(60,40,20,.12);
+        }
+
+        .related-card img {
+            width: 100%;
+
+            height: 240px;
+
+            object-fit: cover;
+        }
+
+        .related-info {
+            padding: 15px;
+        }
+
+        .related-info h3 {
+            font-size: 17px;
+
+            margin-bottom: 5px;
+        }
+
+        .related-info p {
+            font-family: Arial, sans-serif;
+
+            color: #776b61;
+
+            font-size: 12px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #3b2418;
+
+            color: #e9dcc7;
+
+            padding: 40px 7%;
+
+            text-align: center;
+        }
+
+        footer h3 {
+            font-size: 22px;
+
+            font-weight: normal;
+
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            color: #cdbda5;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .book-detail {
+                grid-template-columns: 1fr;
+
+                text-align: center;
+
+                padding: 30px;
+            }
+
+            .book-cover img {
+                width: 250px;
+
+                height: 360px;
+            }
+
+            .rating {
+                justify-content: center;
+            }
+
+            .book-data {
+                text-align: left;
+            }
+
+            .actions {
+                justify-content: center;
+            }
+
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .book-detail {
+                width: 94%;
+
+                padding: 20px;
+            }
+
+            .book-info h2 {
+                font-size: 32px;
+            }
+
+            .book-cover img {
+                width: 210px;
+
+                height: 310px;
+            }
+
+            .book-data {
+                grid-template-columns: 1fr;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logo-icon">📚</div>
+
+        <div>
+
+            <h1>Perpustakaan Nusantara</h1>
+
+            <span>
+                Knowledge • Literature • Discovery
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Beranda
+        </a>
+
+        <a href="index.html">
+            Koleksi
+        </a>
+
+        <a href="index.html">
+            Buku Populer
+        </a>
+
+        <a href="#">
+            Tentang
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ================= BREADCRUMB ================= -->
+
+<div class="breadcrumb">
+
+    <a href="index.html">
+        Beranda
+    </a>
+
+    &nbsp; / &nbsp;
+
+    <a href="index.html">
+        Buku Populer
+    </a>
+
+    &nbsp; / &nbsp;
+
+    Laut Bercerita
+
+</div>
+
+
+
+<!-- ================= DETAIL BUKU ================= -->
+
+<section class="book-detail">
+
+
+    <!-- COVER -->
+
+    <div class="book-cover">
+
+        <img
+            src="https://covers.openlibrary.org/b/isbn/9786024246945-L.jpg"
+            alt="Cover Buku Laut Bercerita"
+        >
+
+    </div>
+
+
+
+    <!-- INFORMASI -->
+
+    <div class="book-info">
+
+        <span class="category">
+            Fiksi
+        </span>
+
+
+        <h2>
+            Laut Bercerita
+        </h2>
+
+
+        <p class="author">
+            Ditulis oleh
+            <strong>
+                Leila S. Chudori
+            </strong>
+        </p>
+
+
+        <!-- RATING -->
+
+        <div class="rating">
+
+            <span class="stars">
+                ★★★★★
+            </span>
+
+            <span class="rating-number">
+                4.9 / 5 · 1.245 ulasan
+            </span>
+
+        </div>
+
+
+        <div class="divider"></div>
+
+
+
+        <!-- SINOPSIS -->
+
+        <div class="description">
+
+            <h3>
+                Sinopsis
+            </h3>
+
+            <p>
+                Laut Bercerita merupakan novel yang mengisahkan
+                perjalanan manusia, persahabatan, keluarga, kehilangan,
+                dan perjuangan. Cerita membawa pembaca menyelami
+                pengalaman para tokohnya dalam menghadapi berbagai
+                persoalan kehidupan dan perubahan zaman.
+            </p>
+
+            <br>
+
+            <p>
+                Dengan gaya bahasa yang kuat dan emosional, buku ini
+                mengajak pembaca untuk memahami arti keluarga,
+                persahabatan, keberanian, serta pentingnya mengingat
+                sejarah.
+            </p>
+
+        </div>
+
+
+
+        <!-- DATA BUKU -->
+
+        <div class="book-data">
+
+            <div class="data-item">
+
+                <span>
+                    Penulis
+                </span>
+
+                <strong>
+                    Leila S. Chudori
+                </strong>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <span>
+                    Penerbit
+                </span>
+
+                <strong>
+                    Kepustakaan Populer Gramedia
+                </strong>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <span>
+                    Tahun Terbit
+                </span>
+
+                <strong>
+                    2023
+                </strong>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <span>
+                    Kategori
+                </span>
+
+                <strong>
+                    Fiksi
+                </strong>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <span>
+                    ISBN
+                </span>
+
+                <strong>
+                    978-602-424-694-5
+                </strong>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <span>
+                    Jumlah Halaman
+                </span>
+
+                <strong>
+                    379 halaman
+                </strong>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <span>
+                    Bahasa
+                </span>
+
+                <strong>
+                    Bahasa Indonesia
+                </strong>
+
+            </div>
+
+
+            <div class="data-item">
+
+                <span>
+                    Status
+                </span>
+
+                <strong>
+                    Tersedia
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BUTTON -->
+
+        <div class="actions">
+
+            <button
+                class="btn btn-primary"
+                onclick="borrowBook()"
+            >
+                📖 Pinjam Buku
+            </button>
+
+
+            <a
+                href="index.html"
+                class="btn btn-secondary"
+            >
+                ← Kembali ke Koleksi
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= BUKU TERKAIT ================= -->
+
+<section class="related">
+
+    <div class="related-title">
+
+        <h2>
+            Buku yang Mungkin Anda Sukai
+        </h2>
+
+        <div class="ornament">
+            ❦
+        </div>
+
+    </div>
+
+
+    <div class="related-grid">
+
+
+        <!-- RELATED 1 -->
+
+        <div class="related-card">
+
+            <img
+                src="https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg"
+                alt="Atomic Habits"
+            >
+
+            <div class="related-info">
+
+                <h3>
+                    Atomic Habits
+                </h3>
+
+                <p>
+                    James Clear
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RELATED 2 -->
+
+        <div class="related-card">
+
+            <img
+                src="https://covers.openlibrary.org/b/isbn/9780132350884-L.jpg"
+                alt="Clean Code"
+            >
+
+            <div class="related-info">
+
+                <h3>
+                    Clean Code
+                </h3>
+
+                <p>
+                    Robert C. Martin
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RELATED 3 -->
+
+        <div class="related-card">
+
+            <img
+                src="https://covers.openlibrary.org/b/isbn/9780857197689-L.jpg"
+                alt="The Psychology of Money"
+            >
+
+            <div class="related-info">
+
+                <h3>
+                    The Psychology of Money
+                </h3>
+
+                <p>
+                    Morgan Housel
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RELATED 4 -->
+
+        <div class="related-card">
+
+            <img
+                src="https://covers.openlibrary.org/b/isbn/9780525559474-L.jpg"
+                alt="The Midnight Library"
+            >
+
+            <div class="related-info">
+
+                <h3>
+                    The Midnight Library
+                </h3>
+
+                <p>
+                    Matt Haig
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <h3>
+        Perpustakaan Nusantara
+    </h3>
+
+    <p>
+        Membuka jendela pengetahuan melalui koleksi buku pilihan.
+    </p>
+
+    <p style="margin-top:15px;">
+        © 2026 Perpustakaan Nusantara
+    </p>
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+function borrowBook() {
+
+    const confirmation = confirm(
+        "Apakah Anda ingin meminjam buku \"Laut Bercerita\"?"
+    );
+
+    if (confirmation) {
+
+        alert(
+            "Permintaan peminjaman berhasil dibuat!\n\n" +
+            "Buku: Laut Bercerita\n" +
+            "Status: Menunggu konfirmasi petugas."
+        );
+
+    }
+
+}
+
+</script>
+
+
+</body>
+</html>
+```
