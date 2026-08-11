@@ -1,0 +1,2570 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Detail Buku - Perpustakaan Nusantara</title>
+
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================================
+           BODY
+        ========================================= */
+
+        body {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            background: #f5efe4;
+
+            color: #3d2b1f;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        header {
+
+            background: #3b2418;
+
+            color: #f8ecd8;
+
+            padding: 18px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            border-bottom:
+                4px solid #b48a4b;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .logo-icon {
+
+            font-size: 34px;
+
+        }
+
+
+        .logo h1 {
+
+            font-size: 22px;
+
+            font-weight: normal;
+
+            line-height: 1.2;
+
+        }
+
+
+        .logo span {
+
+            display: block;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            color: #d9bd8b;
+
+            margin-top: 3px;
+
+        }
+
+
+        nav {
+
+            display: flex;
+
+            gap: 25px;
+
+        }
+
+
+        nav a {
+
+            color: #f8ecd8;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            transition: .2s;
+
+        }
+
+
+        nav a:hover {
+
+            color: #d9b36c;
+
+        }
+
+
+
+        /* =========================================
+           BACK BUTTON
+        ========================================= */
+
+        .back-container {
+
+            width: 86%;
+
+            max-width: 1200px;
+
+            margin: 30px auto 0;
+
+        }
+
+
+        .back-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #65452e;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            border-bottom:
+                1px solid transparent;
+
+            transition: .2s;
+
+        }
+
+
+        .back-link:hover {
+
+            color: #8a633d;
+
+            border-bottom-color:
+                #8a633d;
+
+        }
+
+
+
+        /* =========================================
+           DETAIL SECTION
+        ========================================= */
+
+        .detail-section {
+
+            width: 86%;
+
+            max-width: 1100px;
+
+            margin: 35px auto 80px;
+
+        }
+
+
+        .detail-card {
+
+            background: #fffaf1;
+
+            border:
+                1px solid #d5c3a5;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 30px
+                rgba(60, 40, 20, .10);
+
+        }
+
+
+        .detail-content {
+
+            display: grid;
+
+            grid-template-columns:
+                330px 1fr;
+
+            gap: 55px;
+
+            padding: 45px;
+
+        }
+
+
+
+        /* =========================================
+           COVER
+        ========================================= */
+
+        .cover-column {
+
+            text-align: center;
+
+        }
+
+
+        .detail-cover {
+
+            width: 100%;
+
+            max-width: 310px;
+
+            height: 450px;
+
+            object-fit: cover;
+
+            border-radius: 5px;
+
+            box-shadow:
+                0 12px 25px
+                rgba(40, 25, 15, .22);
+
+            display: block;
+
+            margin: auto;
+
+        }
+
+
+        .cover-label {
+
+            margin-top: 14px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 10px;
+
+            color: #8a7765;
+
+        }
+
+
+
+        /* =========================================
+           DETAIL INFORMATION
+        ========================================= */
+
+        .detail-info {
+
+            padding-top: 5px;
+
+        }
+
+
+        .book-category {
+
+            font-family: Arial, sans-serif;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            color: #997039;
+
+            font-size: 10px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .detail-title {
+
+            font-size: 42px;
+
+            font-weight: normal;
+
+            color: #3e291d;
+
+            line-height: 1.2;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .detail-author {
+
+            font-family: Arial, sans-serif;
+
+            color: #76695d;
+
+            font-size: 14px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .ornament {
+
+            color: #b48a4b;
+
+            font-size: 24px;
+
+            margin: 5px 0 15px;
+
+        }
+
+
+
+        /* =========================================
+           BADGE
+        ========================================= */
+
+        .status-badge {
+
+            display: inline-block;
+
+            padding:
+                6px 11px;
+
+            border-radius: 4px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+            letter-spacing: .7px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .status-fisik {
+
+            background: #e1eadf;
+
+            color: #466348;
+
+        }
+
+
+        .status-digital {
+
+            background: #eadbc8;
+
+            color: #76502f;
+
+        }
+
+
+
+        /* =========================================
+           META
+        ========================================= */
+
+        .meta-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin:
+                20px 0 25px;
+
+        }
+
+
+        .meta-item {
+
+            background: #f5ede0;
+
+            border:
+                1px solid #dfcfb7;
+
+            padding: 12px 14px;
+
+            border-radius: 4px;
+
+        }
+
+
+        .meta-label {
+
+            display: block;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            color: #947b62;
+
+            margin-bottom: 3px;
+
+        }
+
+
+        .meta-value {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            color: #4c392b;
+
+        }
+
+
+
+        /* =========================================
+           RATING
+        ========================================= */
+
+        .rating {
+
+            margin-bottom: 25px;
+
+            color: #b28336;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 15px;
+
+        }
+
+
+        .rating span {
+
+            color: #776b61;
+
+            font-size: 12px;
+
+            margin-left: 8px;
+
+        }
+
+
+
+        /* =========================================
+           SYNOPSIS
+        ========================================= */
+
+        .synopsis {
+
+            margin-top: 25px;
+
+        }
+
+
+        .synopsis h2 {
+
+            font-size: 23px;
+
+            font-weight: normal;
+
+            color: #4a3021;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .synopsis p {
+
+            font-size: 15px;
+
+            color: #59483b;
+
+            text-align: justify;
+
+            white-space: pre-line;
+
+        }
+
+
+
+        /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
+        .actions {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 30px;
+
+        }
+
+
+        .btn {
+
+            display: inline-flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            min-width: 170px;
+
+            padding:
+                12px 18px;
+
+            border-radius: 4px;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+            border: none;
+
+            transition: .2s;
+
+        }
+
+
+        .btn-primary {
+
+            background: #5a3824;
+
+            color: white;
+
+        }
+
+
+        .btn-primary:hover {
+
+            background: #3e271b;
+
+        }
+
+
+        .btn-digital {
+
+            background: #76502f;
+
+            color: white;
+
+        }
+
+
+        .btn-digital:hover {
+
+            background: #533721;
+
+        }
+
+
+        .btn-secondary {
+
+            background: #eee2d0;
+
+            color: #5c4633;
+
+            border:
+                1px solid #d0bda1;
+
+        }
+
+
+        .btn-secondary:hover {
+
+            background: #e5d5bd;
+
+        }
+
+
+
+        /* =========================================
+           PINJAM BOX
+        ========================================= */
+
+        .borrow-box {
+
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 20px;
+
+            background: #f4eadb;
+
+            border:
+                1px solid #d6c1a2;
+
+            border-radius: 6px;
+
+        }
+
+
+        .borrow-box h3 {
+
+            font-size: 20px;
+
+            font-weight: normal;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .borrow-box p {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            color: #6d5c4c;
+
+        }
+
+
+        .borrow-form {
+
+            margin-top: 15px;
+
+        }
+
+
+        .borrow-form label {
+
+            display: block;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 11px;
+
+            color: #5d4938;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .borrow-form input {
+
+            width: 100%;
+
+            padding: 11px;
+
+            border:
+                1px solid #cdb99b;
+
+            border-radius: 4px;
+
+            background: #fffdf8;
+
+            margin-bottom: 12px;
+
+            outline: none;
+
+        }
+
+
+        .borrow-form input:focus {
+
+            border-color: #987342;
+
+        }
+
+
+        .borrow-success {
+
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            background: #e2ecdf;
+
+            color: #3f6042;
+
+            border-radius: 4px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+        }
+
+
+
+        /* =========================================
+           DIGITAL INFORMATION
+        ========================================= */
+
+        .digital-box {
+
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 18px;
+
+            background: #f0e4d1;
+
+            border:
+                1px solid #d3bea0;
+
+            border-radius: 5px;
+
+        }
+
+
+        .digital-box p {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            color: #654d39;
+
+        }
+
+
+
+        /* =========================================
+           ERROR
+        ========================================= */
+
+        .not-found {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 80px 20px;
+
+        }
+
+
+        .not-found-icon {
+
+            font-size: 50px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .not-found h2 {
+
+            font-size: 30px;
+
+            font-weight: normal;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .not-found p {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            color: #776b61;
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+
+            background: #281810;
+
+            color: #d9c9b2;
+
+            text-align: center;
+
+            padding: 35px 7%;
+
+        }
+
+
+        footer h3 {
+
+            font-size: 21px;
+
+            font-weight: normal;
+
+            color: #f7ead3;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        footer p {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 11px;
+
+        }
+
+
+        .copyright {
+
+            margin-top: 15px;
+
+            padding-top: 15px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.12);
+
+        }
+
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 850px) {
+
+            nav {
+
+                display: none;
+
+            }
+
+
+            .detail-content {
+
+                grid-template-columns: 1fr;
+
+                gap: 35px;
+
+                padding: 30px;
+
+            }
+
+
+            .cover-column {
+
+                max-width: 320px;
+
+                margin: auto;
+
+            }
+
+
+            .detail-title {
+
+                font-size: 35px;
+
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .detail-section,
+            .back-container {
+
+                width: 92%;
+
+            }
+
+
+            .detail-content {
+
+                padding: 22px;
+
+            }
+
+
+            .detail-cover {
+
+                height: 430px;
+
+            }
+
+
+            .detail-title {
+
+                font-size: 30px;
+
+            }
+
+
+            .meta-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .actions {
+
+                flex-direction: column;
+
+            }
+
+
+            .btn {
+
+                width: 100%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header>
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            📚
+        </div>
+
+
+        <div>
+
+            <h1>
+                Perpustakaan Nusantara
+            </h1>
+
+            <span>
+                Knowledge • Literature • Discovery
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Beranda
+        </a>
+
+        <a href="index.html#karya">
+            Karya Saya
+        </a>
+
+        <a href="index.html#koleksi">
+            Koleksi
+        </a>
+
+        <a href="index.html#tentang">
+            Tentang
+        </a>
+
+    </nav>
+
+
+</header>
+
+
+
+<!-- =========================================
+     BACK
+========================================= -->
+
+<div class="back-container">
+
+    <a
+        href="index.html"
+        class="back-link"
+    >
+
+        ← Kembali ke Koleksi
+
+    </a>
+
+</div>
+
+
+
+<!-- =========================================
+     DETAIL
+========================================= -->
+
+<main
+    class="detail-section"
+>
+
+
+    <div
+        class="detail-card"
+        id="detailCard"
+    >
+
+
+        <div
+            class="detail-content"
+        >
+
+
+            <!-- COVER -->
+
+            <div class="cover-column">
+
+
+                <img
+                    src=""
+                    alt=""
+                    class="detail-cover"
+                    id="bookCover"
+                >
+
+
+                <div
+                    class="cover-label"
+                    id="coverLabel"
+                >
+                    Sampul buku
+                </div>
+
+
+            </div>
+
+
+
+            <!-- INFORMATION -->
+
+            <div class="detail-info">
+
+
+                <div
+                    class="book-category"
+                    id="bookCategory"
+                >
+                </div>
+
+
+                <h1
+                    class="detail-title"
+                    id="bookTitle"
+                >
+                </h1>
+
+
+                <p
+                    class="detail-author"
+                    id="bookAuthor"
+                >
+                </p>
+
+
+                <div class="ornament">
+                    ❦
+                </div>
+
+
+                <div
+                    id="statusBadge"
+                    class="status-badge"
+                >
+                </div>
+
+
+
+                <!-- META -->
+
+                <div
+                    class="meta-grid"
+                    id="metaGrid"
+                >
+                </div>
+
+
+
+                <!-- RATING -->
+
+                <div
+                    class="rating"
+                    id="bookRating"
+                >
+                </div>
+
+
+
+                <!-- SYNOPSIS -->
+
+                <div class="synopsis">
+
+
+                    <h2>
+                        Sinopsis
+                    </h2>
+
+
+                    <p
+                        id="bookSynopsis"
+                    >
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- ACTION -->
+
+                <div
+                    class="actions"
+                    id="actions"
+                >
+                </div>
+
+
+
+                <!-- BORROW -->
+
+                <div
+                    class="borrow-box"
+                    id="borrowBox"
+                >
+
+
+                    <h3>
+                        📚 Form Peminjaman
+                    </h3>
+
+
+                    <p>
+
+                        Silakan isi nama anggota
+                        untuk mengajukan peminjaman
+                        buku ini.
+
+                    </p>
+
+
+                    <div
+                        class="borrow-form"
+                    >
+
+
+                        <label
+                            for="memberName"
+                        >
+                            Nama Anggota
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="memberName"
+                            placeholder="Masukkan nama Anda"
+                        >
+
+
+                        <label
+                            for="memberId"
+                        >
+                            ID Anggota
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="memberId"
+                            placeholder="Contoh: AGT001"
+                        >
+
+
+                        <button
+                            class="btn btn-primary"
+                            id="submitBorrow"
+                        >
+
+                            Ajukan Peminjaman
+
+                        </button>
+
+
+                    </div>
+
+
+                    <div
+                        class="borrow-success"
+                        id="borrowSuccess"
+                    >
+
+                        ✓ Permintaan peminjaman
+                        berhasil disimpan.
+
+                        <br>
+
+                        Silakan menunggu persetujuan
+                        dari petugas perpustakaan.
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- DIGITAL -->
+
+                <div
+                    class="digital-box"
+                    id="digitalBox"
+                >
+
+                    <p id="digitalMessage">
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- NOT FOUND -->
+
+    <div
+        class="not-found"
+        id="notFound"
+    >
+
+
+        <div class="not-found-icon">
+            📖
+        </div>
+
+
+        <h2>
+            Buku Tidak Ditemukan
+        </h2>
+
+
+        <p>
+
+            Maaf, detail buku yang Anda cari
+            tidak tersedia.
+
+        </p>
+
+
+        <a
+            href="index.html"
+            class="btn btn-primary"
+        >
+
+            Kembali ke Beranda
+
+        </a>
+
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+
+    <h3>
+        Perpustakaan Nusantara
+    </h3>
+
+
+    <p>
+
+        Membuka jendela pengetahuan
+        melalui buku dan cerita.
+
+    </p>
+
+
+    <p class="copyright">
+
+        © 2026 Perpustakaan Nusantara
+        · Karunia Suci Lestari
+
+    </p>
+
+
+</footer>
+
+
+
+<script>
+
+
+/* ==================================================
+   DATABASE BUKU
+================================================== */
+
+const books = {
+
+
+    /* ==================================================
+       BUKU 1
+    ================================================== */
+
+    1: {
+
+        title:
+            "Laut Bercerita",
+
+        author:
+            "Leila S. Chudori",
+
+        category:
+            "Fiksi",
+
+        type:
+            "fisik",
+
+        rating:
+            "4.9",
+
+        reviews:
+            "1.245 ulasan",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9786024246945-L.jpg",
+
+        publisher:
+            "Kepustakaan Populer Gramedia",
+
+        year:
+            "2017",
+
+        stock:
+            "Tersedia",
+
+        synopsis:
+            "Sebuah novel yang menghadirkan kisah tentang persahabatan, kehilangan, perjuangan, dan perjalanan manusia menghadapi masa-masa penuh gejolak."
+
+    },
+
+
+    /* ==================================================
+       BUKU 2
+    ================================================== */
+
+    2: {
+
+        title:
+            "Filosofi Teras",
+
+        author:
+            "Henry Manampiring",
+
+        category:
+            "Psikologi",
+
+        type:
+            "fisik",
+
+        rating:
+            "4.8",
+
+        reviews:
+            "980 ulasan",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9786024125189-L.jpg",
+
+        publisher:
+            "Kompas",
+
+        year:
+            "2018",
+
+        stock:
+            "Tersedia",
+
+        synopsis:
+            "Buku yang memperkenalkan filsafat Stoisisme dan bagaimana prinsip-prinsipnya dapat diterapkan dalam kehidupan sehari-hari."
+
+    },
+
+
+    /* ==================================================
+       BUKU 3
+    ================================================== */
+
+    3: {
+
+        title:
+            "Sapiens",
+
+        author:
+            "Yuval Noah Harari",
+
+        category:
+            "Sejarah",
+
+        type:
+            "fisik",
+
+        rating:
+            "4.9",
+
+        reviews:
+            "1.520 ulasan",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg",
+
+        publisher:
+            "Harper",
+
+        year:
+            "2015",
+
+        stock:
+            "Tersedia",
+
+        synopsis:
+            "Sebuah perjalanan panjang mengenai sejarah manusia, perkembangan peradaban, revolusi kognitif, pertanian, hingga perkembangan masyarakat modern."
+
+    },
+
+
+    /* ==================================================
+       BUKU 4
+    ================================================== */
+
+    4: {
+
+        title:
+            "Atomic Habits",
+
+        author:
+            "James Clear",
+
+        category:
+            "Psikologi",
+
+        type:
+            "fisik",
+
+        rating:
+            "4.8",
+
+        reviews:
+            "2.340 ulasan",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg",
+
+        publisher:
+            "Avery",
+
+        year:
+            "2018",
+
+        stock:
+            "Tersedia",
+
+        synopsis:
+            "Panduan mengenai bagaimana perubahan kecil dan kebiasaan sederhana dapat menghasilkan perubahan besar dalam kehidupan seseorang."
+
+    },
+
+
+    /* ==================================================
+       BUKU 5
+    ================================================== */
+
+    5: {
+
+        title:
+            "The Psychology of Money",
+
+        author:
+            "Morgan Housel",
+
+        category:
+            "Bisnis",
+
+        type:
+            "fisik",
+
+        rating:
+            "4.6",
+
+        reviews:
+            "1.120 ulasan",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9780857197689-L.jpg",
+
+        publisher:
+            "Harriman House",
+
+        year:
+            "2020",
+
+        stock:
+            "Tersedia",
+
+        synopsis:
+            "Buku yang membahas hubungan manusia dengan uang melalui cerita dan pelajaran mengenai perilaku, keputusan, risiko, dan kekayaan."
+
+    },
+
+
+    /* ==================================================
+       BUKU 6
+    ================================================== */
+
+    6: {
+
+        title:
+            "Clean Code",
+
+        author:
+            "Robert C. Martin",
+
+        category:
+            "Teknologi",
+
+        type:
+            "fisik",
+
+        rating:
+            "4.7",
+
+        reviews:
+            "870 ulasan",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9780132350884-L.jpg",
+
+        publisher:
+            "Prentice Hall",
+
+        year:
+            "2008",
+
+        stock:
+            "Tersedia",
+
+        synopsis:
+            "Buku mengenai prinsip dan praktik penulisan kode yang bersih, mudah dibaca, mudah dipelihara, dan berkualitas."
+
+    },
+
+
+    /* ==================================================
+       BUKU 7
+    ================================================== */
+
+    7: {
+
+        title:
+            "The Midnight Library",
+
+        author:
+            "Matt Haig",
+
+        category:
+            "Fiksi",
+
+        type:
+            "fisik",
+
+        rating:
+            "4.5",
+
+        reviews:
+            "1.450 ulasan",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9780525559474-L.jpg",
+
+        publisher:
+            "Viking",
+
+        year:
+            "2020",
+
+        stock:
+            "Tersedia",
+
+        synopsis:
+            "Sebuah cerita tentang pilihan hidup, penyesalan, kemungkinan, dan kehidupan yang mungkin terjadi jika seseorang memilih jalan yang berbeda."
+
+    },
+
+
+    /* ==================================================
+       BUKU 8
+    ================================================== */
+
+    8: {
+
+        title:
+            "Start With Why",
+
+        author:
+            "Simon Sinek",
+
+        category:
+            "Bisnis",
+
+        type:
+            "fisik",
+
+        rating:
+            "4.8",
+
+        reviews:
+            "760 ulasan",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9781591846444-L.jpg",
+
+        publisher:
+            "Portfolio",
+
+        year:
+            "2009",
+
+        stock:
+            "Tersedia",
+
+        synopsis:
+            "Buku yang menjelaskan pentingnya memahami alasan atau tujuan di balik sebuah tindakan, organisasi, maupun kepemimpinan."
+
+    },
+
+
+    /* ==================================================
+       KARYA KARUNIA SUCI LESTARI
+       ID 9
+    ================================================== */
+
+    9: {
+
+        title:
+            "Amygdala",
+
+        author:
+            "Karunia Suci Lestari",
+
+        category:
+            "Novel Digital",
+
+        type:
+            "digital",
+
+        platform:
+            "Wattpad",
+
+        cover:
+            "https://img.wattpad.com/cover/409780215-256-k837599.jpg",
+
+        sourceUrl:
+            "https://www.wattpad.com/myworks/409780215-amygdala-secret-complete",
+
+        year:
+            "Novel",
+
+        stock:
+            "Digital",
+
+        synopsis:
+`Bagi jutaan penggemar Aetheora, Kim Ji Hoo adalah bintang yang terlalu bersinar-memilikinya sama saja seperti bermimpi menyentuh bintang di langit yang sulit untuk digapai. Di dunia idol, perusahaan harus memperhatikan khusus para artisnya agar terhindar bahkan sedikit pun dari goresan luka kecil. Bagi seorang idol, kulit dan wajah mereka adalah aset berharga yang harus dilindungi.
+
+Namun, bagi Han Seul Ah, segalanya berbeda. Di benaknya sudah tertanam bahwa bagi pasien dan rumah sakit -prosedur dan sterilisasi alat adalah sebuah hal terpenting yang harus dan sangat perlu di perhatikan.
+
+Tidak ada yang pernah menyangka lampu sorot panggung konser akan bertemu dengan stetoskop dingin yang menyatukan mereka menjadi suami istri karena sebuah surat wasiat yang tak bisa Seul Ah tolak.
+
+Di balik surat wasiat yang bahkan sudah rumit, kini ia harus beradu akting dengan pernikahan kontrak 'selamanya' yang bahkan Seul Ah tidak mengerti apa maksudnya.
+
+"Bukankah surat kontrak harus dibaca baik-baik? Ini menyangkut kedua belah pihak?"
+
+Seul Ah semakin bingung dengan isi surat kontrak tersebut. Di sana tertulis jelas: Perceraian hanya bisa terjadi jika syarat dan ketentuan khusus terpenuhi.
+
+Entah syarat khusus seperti apa yang dimaksud center grup idol Aetheora ini? Mengapa ia begitu terobsesi mengikat Seul Ah dalam pernikahan tanpa akhir?
+
+Pernikahan terburu-buru ini hanya sedang menunggu waktu kapan semua ini akan berakhir secepatnya-
+
+Syarat khusus apa yang sebenarnya harus terpenuhi untuk mengakhiri pernikahan kontrak ini?`
+
+    },
+
+
+    /* ==================================================
+       KARYA KARUNIA SUCI LESTARI
+       ID 10
+    ================================================== */
+
+    10: {
+
+        title:
+            "Self Healing",
+
+        author:
+            "Karunia Suci Lestari",
+
+        category:
+            "Novel Digital",
+
+        type:
+            "digital",
+
+        platform:
+            "GWP",
+
+        cover:
+            "https://gwp.id/images-data/img-stories/127437/selfhealing.jpg",
+
+        sourceUrl:
+            "https://gwp.id/story/127437/self-healing",
+
+        year:
+            "Novel",
+
+        stock:
+            "Digital",
+
+        synopsis:
+`Salah sendiri kenapa betah menyendiri, berasa anehkan ketika di keramaian? Punya teman dekat, mereka sibuk dengan pasangannya masing-masing. Tapi keinginan untuk memiliki pasangan juga tidak terbesitkan di pikirannya.
+
+Tapi setelah memiliki pasangan, Karen menjadi bucin. Mungkin karena jarang ada orang yang mengajaknya main atau keluar rumah.
+
+Saat putus dengan Reno, Karen benar-benar hancur dengan kondisi yang jauh dari orang tua dan tidak memilki sahabat dekat, teman-teman mainnya pun sudah sibuk mengurus rumah tangga sehingga dirinya sulit untuk mencari teman untuk sekedar men-charge semangatnya.
+
+Kira-kira bagaimanakah cara Karen untuk melakukan self heallingnya?`
+
+    },
+
+
+    /* ==================================================
+       KARYA KARUNIA SUCI LESTARI
+       ID 11
+    ================================================== */
+
+    11: {
+
+        title:
+            "Giska",
+
+        author:
+            "Karunia Suci Lestari",
+
+        category:
+            "Novel Digital",
+
+        type:
+            "digital",
+
+        platform:
+            "Wattpad",
+
+        cover:
+            "https://img.wattpad.com/cover/283401457-256-k291659.jpg",
+
+        sourceUrl:
+            "https://www.wattpad.com/story/283401457-giska",
+
+        year:
+            "Novel",
+
+        stock:
+            "Digital",
+
+        synopsis:
+`Mungkin Giska adalah sosok wanita yang disukai semua laki-laki, yang tidak perlu kode-kode untuk membuat laki-laki peka terhadap apa yang diinginkan wanita.
+
+Si super baik, tapi sayangnya dirinya harus bertemu dengan Baskoro yang ia cintai secara tulus, tetapi Baskoro dengan alasan tidak jelas meninggalkan Giska.
+
+Lama untuk Giska membuka hati kembali, traumanya seperti menetap di pikirannya jika laki-laki itu sama seperti Baskoro.
+
+Daniel pun harus mati-matian membuat Giska percaya lagi bahwa tidak semua laki-laki sama seperti Baskoro.
+
+Saat Giska telah berhasil membuka hatinya untuk Daniel, Baskoro datang dengan semaunya dan membuat Giska menjadi bimbang kembali.`
+
+    }
+
+};
+
+
+
+/* ==================================================
+   AMBIL ID DARI URL
+================================================== */
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const bookId =
+    urlParams.get("id");
+
+
+
+/* ==================================================
+   ELEMENT
+================================================== */
+
+const detailCard =
+    document.getElementById(
+        "detailCard"
+    );
+
+
+const notFound =
+    document.getElementById(
+        "notFound"
+    );
+
+
+const bookCover =
+    document.getElementById(
+        "bookCover"
+    );
+
+
+const coverLabel =
+    document.getElementById(
+        "coverLabel"
+    );
+
+
+const bookCategory =
+    document.getElementById(
+        "bookCategory"
+    );
+
+
+const bookTitle =
+    document.getElementById(
+        "bookTitle"
+    );
+
+
+const bookAuthor =
+    document.getElementById(
+        "bookAuthor"
+    );
+
+
+const statusBadge =
+    document.getElementById(
+        "statusBadge"
+    );
+
+
+const metaGrid =
+    document.getElementById(
+        "metaGrid"
+    );
+
+
+const bookRating =
+    document.getElementById(
+        "bookRating"
+    );
+
+
+const bookSynopsis =
+    document.getElementById(
+        "bookSynopsis"
+    );
+
+
+const actions =
+    document.getElementById(
+        "actions"
+    );
+
+
+const borrowBox =
+    document.getElementById(
+        "borrowBox"
+    );
+
+
+const digitalBox =
+    document.getElementById(
+        "digitalBox"
+    );
+
+
+const digitalMessage =
+    document.getElementById(
+        "digitalMessage"
+    );
+
+
+
+/* ==================================================
+   CEK BUKU
+================================================== */
+
+const book =
+    books[bookId];
+
+
+if (!book) {
+
+    detailCard.style.display =
+        "none";
+
+    notFound.style.display =
+        "block";
+
+}
+
+else {
+
+    renderBook(book);
+
+}
+
+
+
+/* ==================================================
+   RENDER DETAIL BUKU
+================================================== */
+
+function renderBook(book) {
+
+
+    document.title =
+        book.title +
+        " - Perpustakaan Nusantara";
+
+
+    bookCover.src =
+        book.cover;
+
+
+    bookCover.alt =
+        "Cover " +
+        book.title;
+
+
+    bookCategory.textContent =
+        book.category;
+
+
+    bookTitle.textContent =
+        book.title;
+
+
+    bookAuthor.textContent =
+        "oleh " +
+        book.author;
+
+
+
+    /* =========================================
+       STATUS
+    ========================================= */
+
+    if (
+        book.type ===
+        "digital"
+    ) {
+
+        statusBadge.textContent =
+            "Novel Digital";
+
+        statusBadge.className =
+            "status-badge status-digital";
+
+    }
+
+    else {
+
+        statusBadge.textContent =
+            "Buku Fisik";
+
+        statusBadge.className =
+            "status-badge status-fisik";
+
+    }
+
+
+
+    /* =========================================
+       META
+    ========================================= */
+
+    let metaHTML = "";
+
+
+    if (
+        book.publisher
+    ) {
+
+        metaHTML += `
+
+            <div class="meta-item">
+
+                <span class="meta-label">
+                    Penerbit
+                </span>
+
+                <span class="meta-value">
+                    ${book.publisher}
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    if (
+        book.platform
+    ) {
+
+        metaHTML += `
+
+            <div class="meta-item">
+
+                <span class="meta-label">
+                    Platform
+                </span>
+
+                <span class="meta-value">
+                    ${book.platform}
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    metaHTML += `
+
+        <div class="meta-item">
+
+            <span class="meta-label">
+                Tahun / Status
+            </span>
+
+            <span class="meta-value">
+                ${book.year}
+            </span>
+
+        </div>
+
+    `;
+
+
+    metaHTML += `
+
+        <div class="meta-item">
+
+            <span class="meta-label">
+                Ketersediaan
+            </span>
+
+            <span class="meta-value">
+                ${book.stock}
+            </span>
+
+        </div>
+
+    `;
+
+
+    metaGrid.innerHTML =
+        metaHTML;
+
+
+
+    /* =========================================
+       RATING
+    ========================================= */
+
+    if (
+        book.rating
+    ) {
+
+        bookRating.innerHTML = `
+
+            ★★★★★
+
+            <span>
+                ${book.rating}
+                ·
+                ${book.reviews}
+            </span>
+
+        `;
+
+        bookRating.style.display =
+            "block";
+
+    }
+
+    else {
+
+        bookRating.style.display =
+            "none";
+
+    }
+
+
+
+    /* =========================================
+       SINOPSIS
+    ========================================= */
+
+    bookSynopsis.textContent =
+        book.synopsis;
+
+
+
+    /* =========================================
+       ACTION
+    ========================================= */
+
+    if (
+        book.type ===
+        "digital"
+    ) {
+
+        renderDigitalBook(book);
+
+    }
+
+    else {
+
+        renderPhysicalBook(book);
+
+    }
+
+}
+
+
+
+/* ==================================================
+   BUKU FISIK
+================================================== */
+
+function renderPhysicalBook(book) {
+
+
+    actions.innerHTML = `
+
+        <button
+            class="btn btn-primary"
+            id="borrowButton"
+        >
+
+            📚 Pinjam Buku
+
+        </button>
+
+
+        <a
+            href="index.html#koleksi"
+            class="btn btn-secondary"
+        >
+
+            ← Kembali ke Koleksi
+
+        </a>
+
+    `;
+
+
+    borrowBox.style.display =
+        "none";
+
+
+    digitalBox.style.display =
+        "none";
+
+
+    const borrowButton =
+        document.getElementById(
+            "borrowButton"
+        );
+
+
+    borrowButton.addEventListener(
+        "click",
+        function() {
+
+
+            borrowBox.style.display =
+                "block";
+
+
+            borrowBox.scrollIntoView({
+                behavior:
+                    "smooth",
+                block:
+                    "center"
+            });
+
+        }
+    );
+
+
+    setupBorrowForm(
+        book
+    );
+
+}
+
+
+
+/* ==================================================
+   NOVEL DIGITAL
+================================================== */
+
+function renderDigitalBook(book) {
+
+
+    actions.innerHTML = `
+
+        <a
+            href="${book.sourceUrl}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-digital"
+        >
+
+            📖 Baca di ${book.platform}
+
+        </a>
+
+
+        <a
+            href="index.html#karya"
+            class="btn btn-secondary"
+        >
+
+            ← Kembali ke Karya Saya
+
+        </a>
+
+    `;
+
+
+    borrowBox.style.display =
+        "none";
+
+
+    digitalBox.style.display =
+        "block";
+
+
+    digitalMessage.innerHTML = `
+
+        📚
+
+        <strong>
+            Karya Digital
+        </strong>
+
+        <br>
+
+        Novel ini merupakan karya
+        digital karya
+        <strong>
+            ${book.author}
+        </strong>
+        yang tersedia melalui
+        <strong>
+            ${book.platform}
+        </strong>.
+
+        Klik tombol
+        <strong>
+            "Baca di ${book.platform}"
+        </strong>
+        untuk membuka halaman cerita.
+
+    `;
+
+}
+
+
+
+/* ==================================================
+   FORM PEMINJAMAN
+================================================== */
+
+function setupBorrowForm(book) {
+
+
+    const submitButton =
+        document.getElementById(
+            "submitBorrow"
+        );
+
+
+    const memberName =
+        document.getElementById(
+            "memberName"
+        );
+
+
+    const memberId =
+        document.getElementById(
+            "memberId"
+        );
+
+
+    const borrowSuccess =
+        document.getElementById(
+            "borrowSuccess"
+        );
+
+
+    submitButton.addEventListener(
+        "click",
+        function() {
+
+
+            const name =
+                memberName.value
+                    .trim();
+
+
+            const id =
+                memberId.value
+                    .trim();
+
+
+            if (
+                !name ||
+                !id
+            ) {
+
+                alert(
+                    "Silakan isi Nama Anggota dan ID Anggota terlebih dahulu."
+                );
+
+                return;
+
+            }
+
+
+
+            /* =====================================
+               DATA PEMINJAMAN
+            ===================================== */
+
+            const request = {
+
+                bookId:
+                    bookId,
+
+                bookTitle:
+                    book.title,
+
+                memberName:
+                    name,
+
+                memberId:
+                    id,
+
+                date:
+                    new Date()
+                        .toLocaleString(
+                            "id-ID"
+                        ),
+
+                status:
+                    "Menunggu Persetujuan"
+
+            };
+
+
+
+            /* =====================================
+               AMBIL DATA LAMA
+            ===================================== */
+
+            let requests =
+                JSON.parse(
+                    localStorage.getItem(
+                        "borrowRequests"
+                    )
+                ) || [];
+
+
+
+            /* =====================================
+               SIMPAN DATA
+            ===================================== */
+
+            requests.push(
+                request
+            );
+
+
+            localStorage.setItem(
+
+                "borrowRequests",
+
+                JSON.stringify(
+                    requests
+                )
+
+            );
+
+
+
+            /* =====================================
+               TAMPILKAN BERHASIL
+            ===================================== */
+
+            borrowSuccess.style.display =
+                "block";
+
+
+            submitButton.disabled =
+                true;
+
+
+            submitButton.textContent =
+                "✓ Permintaan Terkirim";
+
+
+            memberName.disabled =
+                true;
+
+
+            memberId.disabled =
+                true;
+
+        }
+    );
+
+}
+
+
+
+/* ==================================================
+   FALLBACK GAMBAR
+================================================== */
+
+bookCover.addEventListener(
+    "error",
+    function() {
+
+        this.src =
+            "https://via.placeholder.com/600x900?text=Cover+Buku";
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
