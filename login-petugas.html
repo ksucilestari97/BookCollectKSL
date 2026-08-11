@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Login Petugas | Perpustakaan Nusantara
+    </title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            background: #30231c;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+        }
+
+
+        .container {
+
+            width: 90%;
+
+            max-width: 430px;
+
+            background: #fffaf1;
+
+            padding: 45px;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,.3);
+
+            text-align: center;
+
+        }
+
+
+        .icon {
+
+            font-size: 48px;
+
+        }
+
+
+        h1 {
+
+            font-weight: normal;
+
+            color: #4a2f20;
+
+            margin-top: 10px;
+
+        }
+
+
+        p {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            color: #77695d;
+
+            margin: 8px 0 25px;
+
+        }
+
+
+        .form-group {
+
+            text-align: left;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #cdbda6;
+
+            border-radius: 5px;
+
+            outline: none;
+
+        }
+
+
+        button {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            background: #5a3824;
+
+            color: white;
+
+            cursor: pointer;
+
+            margin-top: 8px;
+
+        }
+
+
+        .demo {
+
+            margin-top: 20px;
+
+            background: #eee2cf;
+
+            padding: 12px;
+
+            border-radius: 5px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 11px;
+
+            color: #66584c;
+
+        }
+
+
+        .back {
+
+            display: block;
+
+            margin-top: 20px;
+
+            color: #76522f;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="icon">
+        🔐
+    </div>
+
+
+    <h1>
+        Login Petugas
+    </h1>
+
+
+    <p>
+        Panel Pengelolaan Perpustakaan
+    </p>
+
+
+    <form
+        onsubmit="login(event)"
+    >
+
+
+        <div class="form-group">
+
+            <label>
+                ID Petugas
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Masukkan ID petugas"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Masukkan password"
+                required
+            >
+
+        </div>
+
+
+        <button type="submit">
+
+            Masuk ke Panel Petugas
+
+        </button>
+
+
+    </form>
+
+
+    <div class="demo">
+
+        <strong>Akun Demo Petugas</strong><br><br>
+
+        ID: <b>PET001</b><br>
+
+        Password: <b>admin123</b>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back"
+    >
+
+        ← Kembali ke Website
+
+    </a>
+
+
+</div>
+
+
+
+<script>
+
+
+function login(event) {
+
+    event.preventDefault();
+
+
+    const username =
+        document.getElementById(
+            "username"
+        ).value;
+
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+
+    if (
+        username === "PET001" &&
+        password === "admin123"
+    ) {
+
+
+        localStorage.setItem(
+            "loginPetugas",
+            "true"
+        );
+
+
+        window.location.href =
+            "dashboard-petugas.html";
+
+    }
+
+    else {
+
+        alert(
+            "ID petugas atau password salah."
+        );
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
