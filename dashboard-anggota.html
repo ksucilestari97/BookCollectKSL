@@ -5,8 +5,10 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>
         Dashboard Anggota | Perpustakaan Nusantara
@@ -50,14 +52,15 @@
 
             align-items: center;
 
-            border-bottom: 4px solid #b58b4b;
+            border-bottom:
+                4px solid #b58b4b;
 
         }
 
 
         .logo {
 
-            font-size: 24px;
+            font-size: 23px;
 
         }
 
@@ -66,9 +69,10 @@
 
             background: transparent;
 
-            border: 1px solid #c7a976;
+            border:
+                1px solid #c7a976;
 
-            color: #f7ead3;
+            color: white;
 
             padding: 8px 15px;
 
@@ -137,7 +141,8 @@
 
             background: #fffaf1;
 
-            border: 1px solid #d6c5a8;
+            border:
+                1px solid #d6c5a8;
 
             padding: 25px;
 
@@ -170,7 +175,8 @@
 
             background: #fffaf1;
 
-            border: 1px solid #d6c5a8;
+            border:
+                1px solid #d6c5a8;
 
             border-radius: 8px;
 
@@ -213,6 +219,8 @@
 
             padding: 12px;
 
+            white-space: nowrap;
+
         }
 
 
@@ -220,7 +228,8 @@
 
             padding: 12px;
 
-            border-bottom: 1px solid #ded0bb;
+            border-bottom:
+                1px solid #ded0bb;
 
         }
 
@@ -263,6 +272,52 @@
         }
 
 
+        .returned {
+
+            background: #dedfd9;
+
+            color: #5c625c;
+
+        }
+
+
+        .late {
+
+            color: #a33c30;
+
+            font-weight: bold;
+
+        }
+
+
+        .return-button {
+
+            background: #765331;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 4px;
+
+            padding: 8px 12px;
+
+            cursor: pointer;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 11px;
+
+        }
+
+
+        .return-button:hover {
+
+            opacity: .85;
+
+        }
+
+
         .button {
 
             display: inline-block;
@@ -280,6 +335,17 @@
             font-family: Arial, sans-serif;
 
             font-size: 13px;
+
+        }
+
+
+        .empty {
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #827568;
 
         }
 
@@ -312,8 +378,11 @@
 
 <header>
 
+
     <div class="logo">
+
         📚 Perpustakaan Nusantara
+
     </div>
 
 
@@ -326,6 +395,7 @@
 
     </button>
 
+
 </header>
 
 
@@ -336,20 +406,26 @@
     <div class="welcome">
 
         <h1>
+
             Selamat Datang,
             <span id="namaAnggota">
                 Anggota
             </span>
+
         </h1>
 
         <p>
-            Kelola peminjaman buku Anda
-            melalui halaman ini.
+
+            Kelola peminjaman dan pengembalian
+            buku Anda.
+
         </p>
 
     </div>
 
 
+
+    <!-- STATISTIK -->
 
     <div class="stats">
 
@@ -358,13 +434,15 @@
 
             <div
                 class="stat-number"
-                id="jumlahPinjaman"
+                id="jumlahDipinjam"
             >
                 0
             </div>
 
             <div class="stat-title">
-                Buku Dipinjam
+
+                Sedang Dipinjam
+
             </div>
 
         </div>
@@ -372,12 +450,17 @@
 
         <div class="stat">
 
-            <div class="stat-number">
+            <div
+                class="stat-number"
+                id="jumlahMenunggu"
+            >
                 0
             </div>
 
             <div class="stat-title">
+
                 Menunggu Persetujuan
+
             </div>
 
         </div>
@@ -385,12 +468,17 @@
 
         <div class="stat">
 
-            <div class="stat-number">
+            <div
+                class="stat-number"
+                id="jumlahSelesai"
+            >
                 0
             </div>
 
             <div class="stat-title">
-                Riwayat Peminjaman
+
+                Sudah Dikembalikan
+
             </div>
 
         </div>
@@ -400,11 +488,15 @@
 
 
 
+    <!-- DAFTAR PEMINJAMAN -->
+
     <section class="section">
 
 
         <h2>
+
             📖 Peminjaman Saya
+
         </h2>
 
 
@@ -420,11 +512,19 @@
                     </th>
 
                     <th>
-                        Tanggal
+                        Tanggal Pinjam
+                    </th>
+
+                    <th>
+                        Jatuh Tempo
                     </th>
 
                     <th>
                         Status
+                    </th>
+
+                    <th>
+                        Aksi
                     </th>
 
                 </tr>
@@ -432,7 +532,9 @@
             </thead>
 
 
-            <tbody id="loanTable">
+            <tbody
+                id="loanTable"
+            >
 
             </tbody>
 
@@ -449,7 +551,7 @@
         class="button"
     >
 
-        🔍 Cari Buku
+        🔍 Cari Buku Lain
 
     </a>
 
@@ -461,7 +563,10 @@
 <script>
 
 
-/* CEK LOGIN */
+/* ==================================================
+   CEK LOGIN
+================================================== */
+
 
 if (
     localStorage.getItem(
@@ -475,28 +580,87 @@ if (
 }
 
 
-/* NAMA */
 
-document
-    .getElementById("namaAnggota")
-    .textContent =
+/* ==================================================
+   NAMA ANGGOTA
+================================================== */
+
+
+const namaAnggota =
     localStorage.getItem(
         "namaAnggota"
     ) || "Anggota";
 
 
+document
+    .getElementById(
+        "namaAnggota"
+    )
+    .textContent =
+    namaAnggota;
 
-/* DATA PEMINJAMAN */
+
+
+/* ==================================================
+   CEK JATUH TEMPO
+================================================== */
+
+
+function sudahJatuhTempo(
+    tanggalTempo
+) {
+
+
+    if (!tanggalTempo) {
+
+        return false;
+
+    }
+
+
+    const sekarang =
+        new Date();
+
+
+    const tempo =
+        new Date(
+            tanggalTempo
+        );
+
+
+    return sekarang > tempo;
+
+}
+
+
+
+/* ==================================================
+   TAMPILKAN PEMINJAMAN
+================================================== */
+
 
 function tampilkanPeminjaman() {
 
 
-    const loans =
+    const semuaPeminjaman =
         JSON.parse(
             localStorage.getItem(
                 "peminjaman"
             )
         ) || [];
+
+
+    const peminjaman =
+        semuaPeminjaman.filter(
+            function(loan) {
+
+                return (
+                    loan.member ===
+                    namaAnggota
+                );
+
+            }
+        );
 
 
     const table =
@@ -508,9 +672,53 @@ function tampilkanPeminjaman() {
     table.innerHTML = "";
 
 
-    loans.forEach(
-        function(loan) {
+    let dipinjam = 0;
 
+    let menunggu = 0;
+
+    let selesai = 0;
+
+
+
+    peminjaman.forEach(
+        function(
+            loan,
+            index
+        ) {
+
+
+            if (
+                loan.status ===
+                "Disetujui"
+            ) {
+
+                dipinjam++;
+
+            }
+
+
+            if (
+                loan.status ===
+                "Menunggu"
+            ) {
+
+                menunggu++;
+
+            }
+
+
+            if (
+                loan.status ===
+                "Dikembalikan"
+            ) {
+
+                selesai++;
+
+            }
+
+
+
+            /* STATUS CLASS */
 
             let statusClass =
                 "pending";
@@ -538,6 +746,83 @@ function tampilkanPeminjaman() {
             }
 
 
+            if (
+                loan.status ===
+                "Dikembalikan"
+            ) {
+
+                statusClass =
+                    "returned";
+
+            }
+
+
+
+            /* JATUH TEMPO */
+
+            let dueText =
+                loan.dueDate || "-";
+
+
+            if (
+                loan.status ===
+                "Disetujui" &&
+                sudahJatuhTempo(
+                    loan.dueDate
+                )
+            ) {
+
+                dueText +=
+                    ' <span class="late">(Terlambat)</span>';
+
+            }
+
+
+
+            /* AKSI */
+
+            let action =
+                "-";
+
+
+            if (
+                loan.status ===
+                "Disetujui"
+            ) {
+
+                action = `
+
+                    <button
+                        class="return-button"
+                        onclick="ajukanPengembalian(
+                            '${loan.book}'
+                        )"
+                    >
+
+                        Kembalikan
+
+                    </button>
+
+                `;
+
+            }
+
+
+            if (
+                loan.status ===
+                "Menunggu Pengembalian"
+            ) {
+
+                action =
+
+                    "Menunggu konfirmasi petugas";
+
+            }
+
+
+
+            /* TABEL */
+
             table.innerHTML += `
 
                 <tr>
@@ -547,7 +832,11 @@ function tampilkanPeminjaman() {
                     </td>
 
                     <td>
-                        ${loan.date}
+                        ${loan.borrowDate || loan.date}
+                    </td>
+
+                    <td>
+                        ${dueText}
                     </td>
 
                     <td>
@@ -555,9 +844,15 @@ function tampilkanPeminjaman() {
                         <span
                             class="status ${statusClass}"
                         >
+
                             ${loan.status}
+
                         </span>
 
+                    </td>
+
+                    <td>
+                        ${action}
                     </td>
 
                 </tr>
@@ -567,20 +862,165 @@ function tampilkanPeminjaman() {
         }
     );
 
+
+
+    /* JIKA KOSONG */
+
+    if (
+        peminjaman.length === 0
+    ) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="5"
+                    class="empty"
+                >
+
+                    Anda belum memiliki
+                    peminjaman buku.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+
+
+    /* STATISTIK */
+
+    document
+        .getElementById(
+            "jumlahDipinjam"
+        )
+        .textContent =
+        dipinjam;
+
+
+    document
+        .getElementById(
+            "jumlahMenunggu"
+        )
+        .textContent =
+        menunggu;
+
+
+    document
+        .getElementById(
+            "jumlahSelesai"
+        )
+        .textContent =
+        selesai;
+
 }
 
 
-tampilkanPeminjaman();
+
+/* ==================================================
+   AJUKAN PENGEMBALIAN
+================================================== */
+
+
+function ajukanPengembalian(
+    namaBuku
+) {
+
+
+    const semuaPeminjaman =
+        JSON.parse(
+            localStorage.getItem(
+                "peminjaman"
+            )
+        ) || [];
+
+
+    const index =
+        semuaPeminjaman.findIndex(
+            function(loan) {
+
+                return (
+                    loan.member ===
+                    namaAnggota &&
+
+                    loan.book ===
+                    namaBuku &&
+
+                    loan.status ===
+                    "Disetujui"
+                );
+
+            }
+        );
+
+
+    if (
+        index === -1
+    ) {
+
+        alert(
+            "Data peminjaman tidak ditemukan."
+        );
+
+        return;
+
+    }
+
+
+    const konfirmasi =
+        confirm(
+            "Apakah Anda yakin ingin mengembalikan buku:\n\n" +
+            namaBuku +
+            "?"
+        );
+
+
+    if (!konfirmasi) {
+
+        return;
+
+    }
+
+
+    semuaPeminjaman[index].status =
+        "Menunggu Pengembalian";
+
+
+    localStorage.setItem(
+        "peminjaman",
+        JSON.stringify(
+            semuaPeminjaman
+        )
+    );
+
+
+    alert(
+        "Permintaan pengembalian telah dikirim kepada petugas."
+    );
+
+
+    tampilkanPeminjaman();
+
+}
 
 
 
-/* LOGOUT */
+/* ==================================================
+   LOGOUT
+================================================== */
+
 
 function logout() {
+
 
     localStorage.removeItem(
         "loginAnggota"
     );
+
 
     localStorage.removeItem(
         "namaAnggota"
@@ -591,6 +1031,10 @@ function logout() {
         "login-anggota.html";
 
 }
+
+
+
+tampilkanPeminjaman();
 
 
 </script>
