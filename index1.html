@@ -1,0 +1,2304 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Perpustakaan Nusantara
+    </title>
+
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================================
+           BODY
+        ========================================= */
+
+        body {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            background: #f5efe4;
+
+            color: #3d2b1f;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        header {
+
+            background: #3b2418;
+
+            color: #f8ecd8;
+
+            padding: 18px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            border-bottom:
+                4px solid #b48a4b;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .logo-icon {
+
+            font-size: 35px;
+
+        }
+
+
+        .logo h1 {
+
+            font-size: 23px;
+
+            font-weight: normal;
+
+            line-height: 1.2;
+
+        }
+
+
+        .logo span {
+
+            display: block;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            color: #d9bd8b;
+
+            margin-top: 3px;
+
+        }
+
+
+        nav {
+
+            display: flex;
+
+            gap: 25px;
+
+        }
+
+
+        nav a {
+
+            color: #f8ecd8;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            transition: .2s;
+
+        }
+
+
+        nav a:hover {
+
+            color: #d9b36c;
+
+        }
+
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero {
+
+            min-height: 430px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            padding: 70px 7%;
+
+            color: #f8ecd8;
+
+            background:
+
+                linear-gradient(
+                    rgba(55, 33, 22, .88),
+                    rgba(55, 33, 22, .88)
+                ),
+
+                url(
+                    "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1800&q=80"
+                );
+
+            background-size: cover;
+
+            background-position: center;
+
+        }
+
+
+        .hero-content {
+
+            max-width: 800px;
+
+        }
+
+
+        .hero small {
+
+            font-family: Arial, sans-serif;
+
+            text-transform: uppercase;
+
+            letter-spacing: 4px;
+
+            font-size: 11px;
+
+            color: #d9b36c;
+
+        }
+
+
+        .hero h2 {
+
+            font-size: 52px;
+
+            font-weight: normal;
+
+            line-height: 1.15;
+
+            margin: 15px 0;
+
+        }
+
+
+        .hero p {
+
+            max-width: 650px;
+
+            margin: auto;
+
+            font-size: 16px;
+
+            color: #e8d8c1;
+
+        }
+
+
+        .ornament {
+
+            color: #b48a4b;
+
+            font-size: 24px;
+
+            margin: 8px 0;
+
+        }
+
+
+
+        /* =========================================
+           SECTION
+        ========================================= */
+
+        .section {
+
+            width: 86%;
+
+            max-width: 1200px;
+
+            margin: 70px auto;
+
+        }
+
+
+        .section-heading {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .section-heading small {
+
+            font-family: Arial, sans-serif;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+
+            font-size: 10px;
+
+            color: #997039;
+
+        }
+
+
+        .section-heading h2 {
+
+            font-size: 34px;
+
+            font-weight: normal;
+
+            color: #4a3021;
+
+            margin: 5px 0;
+
+        }
+
+
+        .section-heading p {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            color: #776b61;
+
+        }
+
+
+
+        /* =========================================
+           KARYA PENULIS
+        ========================================= */
+
+        .author-books {
+
+            background: #eadfcd;
+
+            width: 100%;
+
+            padding:
+                70px 7%;
+
+            border-top:
+                1px solid #d3bea0;
+
+            border-bottom:
+                1px solid #d3bea0;
+
+        }
+
+
+        .author-books-inner {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+        }
+
+
+        .author-intro {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .author-intro small {
+
+            font-family: Arial, sans-serif;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+
+            font-size: 10px;
+
+            color: #997039;
+
+        }
+
+
+        .author-intro h2 {
+
+            font-size: 36px;
+
+            font-weight: normal;
+
+            color: #4a3021;
+
+            margin: 5px 0;
+
+        }
+
+
+        .author-intro p {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            color: #776b61;
+
+        }
+
+
+
+        /* =========================================
+           BOOK GRID
+        ========================================= */
+
+        .book-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+        .author-grid {
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            max-width: 950px;
+
+            margin: auto;
+
+        }
+
+
+
+        /* =========================================
+           BOOK CARD
+        ========================================= */
+
+        .book-card {
+
+            background: #fffaf1;
+
+            border:
+                1px solid #d5c3a5;
+
+            border-radius: 7px;
+
+            overflow: hidden;
+
+            transition:
+                transform .25s,
+                box-shadow .25s;
+
+        }
+
+
+        .book-card:hover {
+
+            transform:
+                translateY(-6px);
+
+            box-shadow:
+                0 12px 28px
+                rgba(60, 40, 20, .14);
+
+        }
+
+
+        .cover-wrapper {
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .book-cover {
+
+            width: 100%;
+
+            height: 330px;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform .3s;
+
+        }
+
+
+        .book-card:hover
+        .book-cover {
+
+            transform:
+                scale(1.03);
+
+        }
+
+
+        .badge {
+
+            position: absolute;
+
+            top: 12px;
+
+            left: 12px;
+
+            padding:
+                5px 9px;
+
+            border-radius: 3px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 9px;
+
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+            letter-spacing: .7px;
+
+            color: white;
+
+        }
+
+
+        .badge-digital {
+
+            background: #76502f;
+
+        }
+
+
+        .badge-fisik {
+
+            background: #466348;
+
+        }
+
+
+        .book-info {
+
+            padding: 18px;
+
+        }
+
+
+        .book-category {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            color: #997039;
+
+        }
+
+
+        .book-title {
+
+            font-size: 20px;
+
+            font-weight: normal;
+
+            line-height: 1.3;
+
+            color: #3e291d;
+
+            margin: 5px 0;
+
+        }
+
+
+        .book-author {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            color: #76695d;
+
+        }
+
+
+        .platform {
+
+            display: inline-block;
+
+            margin-top: 9px;
+
+            padding:
+                4px 8px;
+
+            background: #f0e4d1;
+
+            color: #725234;
+
+            border-radius: 3px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 10px;
+
+        }
+
+
+        .rating {
+
+            margin-top: 10px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            color: #b28336;
+
+        }
+
+
+        .rating span {
+
+            color: #776b61;
+
+            margin-left: 4px;
+
+        }
+
+
+        .book-action {
+
+            margin-top: 15px;
+
+        }
+
+
+        .btn {
+
+            display: block;
+
+            width: 100%;
+
+            text-align: center;
+
+            padding: 11px;
+
+            border-radius: 4px;
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            transition: .2s;
+
+        }
+
+
+        .btn-primary {
+
+            background: #5a3824;
+
+            color: white;
+
+        }
+
+
+        .btn-primary:hover {
+
+            background: #3e271b;
+
+        }
+
+
+        .btn-digital {
+
+            background: #76502f;
+
+            color: white;
+
+        }
+
+
+        .btn-digital:hover {
+
+            background: #533721;
+
+        }
+
+
+
+        /* =========================================
+           SEARCH
+        ========================================= */
+
+        .search-area {
+
+            width: 86%;
+
+            max-width: 1200px;
+
+            margin:
+                0 auto 60px;
+
+        }
+
+
+        .search-box {
+
+            background: #fffaf1;
+
+            padding: 25px;
+
+            border:
+                1px solid #d5c3a5;
+
+            border-radius: 7px;
+
+            box-shadow:
+                0 7px 20px
+                rgba(60, 40, 20, .08);
+
+        }
+
+
+        .search-wrapper {
+
+            position: relative;
+
+        }
+
+
+        .search-icon {
+
+            position: absolute;
+
+            left: 17px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 17px;
+
+        }
+
+
+        #searchInput {
+
+            width: 100%;
+
+            padding:
+                14px 18px 14px 48px;
+
+            border:
+                1px solid #cbb99d;
+
+            border-radius: 5px;
+
+            outline: none;
+
+            background: #fffdf8;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 14px;
+
+        }
+
+
+        #searchInput:focus {
+
+            border-color: #987342;
+
+        }
+
+
+        .filters {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+
+            margin-top: 15px;
+
+        }
+
+
+        .filter-btn {
+
+            border:
+                1px solid #cbb99d;
+
+            background: #f6eee1;
+
+            color: #654c38;
+
+            padding:
+                8px 14px;
+
+            border-radius: 20px;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 11px;
+
+            cursor: pointer;
+
+        }
+
+
+        .filter-btn:hover {
+
+            background: #eadbc5;
+
+        }
+
+
+        .filter-btn.active {
+
+            background: #5a3824;
+
+            border-color: #5a3824;
+
+            color: white;
+
+        }
+
+
+
+        /* =========================================
+           AUTHOR INFO
+        ========================================= */
+
+        .about-author {
+
+            background: #3b2418;
+
+            color: #f7ead3;
+
+            padding:
+                65px 7%;
+
+            text-align: center;
+
+        }
+
+
+        .author-symbol {
+
+            font-size: 42px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .about-author small {
+
+            font-family: Arial, sans-serif;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+
+            color: #d5ad6a;
+
+            font-size: 10px;
+
+        }
+
+
+        .about-author h2 {
+
+            font-size: 32px;
+
+            font-weight: normal;
+
+            margin: 5px 0 10px;
+
+        }
+
+
+        .about-author p {
+
+            max-width: 720px;
+
+            margin: auto;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+            color: #d9c9b2;
+
+        }
+
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+
+            background: #281810;
+
+            color: #d9c9b2;
+
+            text-align: center;
+
+            padding: 35px 7%;
+
+        }
+
+
+        footer h3 {
+
+            font-size: 21px;
+
+            font-weight: normal;
+
+            color: #f7ead3;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        footer p {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 11px;
+
+        }
+
+
+        .copyright {
+
+            margin-top: 15px;
+
+            padding-top: 15px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.12);
+
+        }
+
+
+
+        /* =========================================
+           EMPTY RESULT
+        ========================================= */
+
+        .empty {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 40px;
+
+            background: #fffaf1;
+
+            border:
+                1px solid #d5c3a5;
+
+            border-radius: 7px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .empty h3 {
+
+            font-weight: normal;
+
+            font-size: 22px;
+
+        }
+
+
+        .empty p {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            color: #776b61;
+
+        }
+
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .book-grid {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+
+            }
+
+
+            .author-grid {
+
+                grid-template-columns:
+                    repeat(3, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            nav {
+
+                display: none;
+
+            }
+
+
+            .hero h2 {
+
+                font-size: 40px;
+
+            }
+
+
+            .book-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .author-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .hero {
+
+                min-height: 380px;
+
+            }
+
+
+            .hero h2 {
+
+                font-size: 34px;
+
+            }
+
+
+            .section,
+            .search-area {
+
+                width: 92%;
+
+            }
+
+
+            .book-grid,
+            .author-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .book-cover {
+
+                height: 400px;
+
+            }
+
+
+            .author-books {
+
+                padding:
+                    55px 5%;
+
+            }
+
+
+            .author-intro h2 {
+
+                font-size: 29px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header>
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            📚
+        </div>
+
+        <div>
+
+            <h1>
+                Perpustakaan Nusantara
+            </h1>
+
+            <span>
+                Knowledge • Literature • Discovery
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="#beranda">
+            Beranda
+        </a>
+
+        <a href="#karya">
+            Karya Saya
+        </a>
+
+        <a href="#koleksi">
+            Koleksi
+        </a>
+
+        <a href="#tentang">
+            Tentang
+        </a>
+
+    </nav>
+
+
+</header>
+
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section
+    class="hero"
+    id="beranda"
+>
+
+
+    <div class="hero-content">
+
+
+        <small>
+            Selamat Datang
+        </small>
+
+
+        <div class="ornament">
+            ❦
+        </div>
+
+
+        <h2>
+
+            Temukan Dunia<br>
+            di Dalam Buku
+
+        </h2>
+
+
+        <p>
+
+            Jelajahi koleksi buku pilihan,
+            temukan cerita baru, dan nikmati
+            perjalanan menuju dunia pengetahuan
+            dan imajinasi.
+
+        </p>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     KARYA KARUNIA SUCI LESTARI
+     DITAMPILKAN PALING ATAS
+========================================= -->
+
+<section
+    class="author-books"
+    id="karya"
+>
+
+
+    <div class="author-books-inner">
+
+
+        <div class="author-intro">
+
+            <small>
+                Karya Penulis
+            </small>
+
+
+            <h2>
+                Novel Karya Karunia Suci Lestari
+            </h2>
+
+
+            <div class="ornament">
+                ❦
+            </div>
+
+
+            <p>
+
+                Koleksi novel digital karya
+                Karunia Suci Lestari.
+
+            </p>
+
+        </div>
+
+
+        <div
+            class="book-grid author-grid"
+            id="authorBooks"
+        >
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     SEARCH & FILTER
+========================================= -->
+
+<section
+    class="search-area"
+    id="koleksi"
+>
+
+
+    <div class="search-box">
+
+
+        <div class="search-wrapper">
+
+            <span class="search-icon">
+                🔎
+            </span>
+
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Cari judul, penulis, atau kategori..."
+            >
+
+        </div>
+
+
+        <div class="filters">
+
+
+            <button
+                class="filter-btn active"
+                data-filter="semua"
+            >
+                Semua
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="fisik"
+            >
+                📚 Buku Fisik
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="digital"
+            >
+                💻 Novel Digital
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="Fiksi"
+            >
+                Fiksi
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="Psikologi"
+            >
+                Psikologi
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="Bisnis"
+            >
+                Bisnis
+            </button>
+
+
+            <button
+                class="filter-btn"
+                data-filter="Teknologi"
+            >
+                Teknologi
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     BUKU POPULER
+========================================= -->
+
+<section class="section">
+
+
+    <div class="section-heading">
+
+
+        <small>
+            Koleksi Pilihan
+        </small>
+
+
+        <h2>
+            Buku Populer
+        </h2>
+
+
+        <div class="ornament">
+            ❦
+        </div>
+
+
+        <p>
+
+            Temukan buku-buku pilihan
+            untuk menemani perjalanan membaca.
+
+        </p>
+
+
+    </div>
+
+
+    <div
+        class="book-grid"
+        id="popularBooks"
+    >
+    </div>
+
+
+    <div
+        class="empty"
+        id="emptyResult"
+    >
+
+        <h3>
+            📚 Buku Tidak Ditemukan
+        </h3>
+
+
+        <p>
+            Coba gunakan kata kunci
+            atau filter yang berbeda.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     TENTANG PENULIS
+========================================= -->
+
+<section
+    class="about-author"
+    id="tentang"
+>
+
+
+    <div class="author-symbol">
+        ✒️
+    </div>
+
+
+    <small>
+        Tentang Penulis
+    </small>
+
+
+    <h2>
+        Karunia Suci Lestari
+    </h2>
+
+
+    <p>
+
+        Penulis dan pencinta cerita yang
+        menghadirkan berbagai kisah melalui
+        karakter, konflik, dan perjalanan
+        emosional. Ketiga karya digital
+        <strong>
+            Amygdala, Self Healing,
+            dan Giska
+        </strong>
+        dapat dibaca melalui platform
+        tempat masing-masing karya tersedia.
+
+    </p>
+
+
+</section>
+
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+
+    <h3>
+        Perpustakaan Nusantara
+    </h3>
+
+
+    <p>
+
+        Membuka jendela pengetahuan
+        melalui buku dan cerita.
+
+    </p>
+
+
+    <p class="copyright">
+
+        © 2026 Perpustakaan Nusantara
+        · Karunia Suci Lestari
+
+    </p>
+
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================================
+   DATABASE BUKU
+========================================= */
+
+const books = {
+
+
+    /* =========================================
+       BUKU FISIK
+    ========================================= */
+
+
+    1: {
+
+        title: "Laut Bercerita",
+
+        author: "Leila S. Chudori",
+
+        category: "Fiksi",
+
+        type: "fisik",
+
+        rating: 4.9,
+
+        reviews: "1.245",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9786024246945-L.jpg"
+
+    },
+
+
+    2: {
+
+        title: "Filosofi Teras",
+
+        author: "Henry Manampiring",
+
+        category: "Psikologi",
+
+        type: "fisik",
+
+        rating: 4.8,
+
+        reviews: "980",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9786024125189-L.jpg"
+
+    },
+
+
+    3: {
+
+        title: "Sapiens",
+
+        author: "Yuval Noah Harari",
+
+        category: "Sejarah",
+
+        type: "fisik",
+
+        rating: 4.9,
+
+        reviews: "1.520",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg"
+
+    },
+
+
+    4: {
+
+        title: "Atomic Habits",
+
+        author: "James Clear",
+
+        category: "Psikologi",
+
+        type: "fisik",
+
+        rating: 4.8,
+
+        reviews: "2.340",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9780735211292-L.jpg"
+
+    },
+
+
+    5: {
+
+        title: "The Psychology of Money",
+
+        author: "Morgan Housel",
+
+        category: "Bisnis",
+
+        type: "fisik",
+
+        rating: 4.6,
+
+        reviews: "1.120",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9780857197689-L.jpg"
+
+    },
+
+
+    6: {
+
+        title: "Clean Code",
+
+        author: "Robert C. Martin",
+
+        category: "Teknologi",
+
+        type: "fisik",
+
+        rating: 4.7,
+
+        reviews: "870",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9780132350884-L.jpg"
+
+    },
+
+
+    7: {
+
+        title: "The Midnight Library",
+
+        author: "Matt Haig",
+
+        category: "Fiksi",
+
+        type: "fisik",
+
+        rating: 4.5,
+
+        reviews: "1.450",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9780525559474-L.jpg"
+
+    },
+
+
+    8: {
+
+        title: "Start With Why",
+
+        author: "Simon Sinek",
+
+        category: "Bisnis",
+
+        type: "fisik",
+
+        rating: 4.8,
+
+        reviews: "760",
+
+        cover:
+            "https://covers.openlibrary.org/b/isbn/9781591846444-L.jpg"
+
+    },
+
+
+    /* =========================================
+       KARYA KARUNIA SUCI LESTARI
+    ========================================= */
+
+
+    9: {
+
+        title: "Amygdala",
+
+        author: "Karunia Suci Lestari",
+
+        category: "Novel Digital",
+
+        type: "digital",
+
+        platform: "Wattpad",
+
+        sourceUrl:
+            "https://www.wattpad.com/myworks/409780215-amygdala-secret-complete",
+
+        cover:
+            "https://img.wattpad.com/cover/409780215-256-k837599.jpg"
+
+    },
+
+
+    10: {
+
+        title: "Self Healing",
+
+        author: "Karunia Suci Lestari",
+
+        category: "Novel Digital",
+
+        type: "digital",
+
+        platform: "GWP",
+
+        sourceUrl:
+            "https://gwp.id/story/127437/self-healing",
+
+        cover:
+            "https://gwp.id/images-data/img-stories/127437/selfhealing.jpg"
+
+    },
+
+
+    11: {
+
+        title: "Giska",
+
+        author: "Karunia Suci Lestari",
+
+        category: "Novel Digital",
+
+        type: "digital",
+
+        platform: "Wattpad",
+
+        sourceUrl:
+            "https://www.wattpad.com/story/283401457-giska",
+
+        cover:
+            "https://img.wattpad.com/cover/283401457-256-k291659.jpg"
+
+    }
+
+};
+
+
+
+/* =========================================
+   ELEMENT
+========================================= */
+
+const authorBooks =
+    document.getElementById(
+        "authorBooks"
+    );
+
+
+const popularBooks =
+    document.getElementById(
+        "popularBooks"
+    );
+
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+
+const filterButtons =
+    document.querySelectorAll(
+        ".filter-btn"
+    );
+
+
+const emptyResult =
+    document.getElementById(
+        "emptyResult"
+    );
+
+
+
+/* =========================================
+   CREATE BOOK CARD
+========================================= */
+
+function createBookCard(
+    id,
+    book
+) {
+
+
+    let badge = "";
+
+    let platform = "";
+
+    let rating = "";
+
+    let buttonClass =
+        "btn-primary";
+
+
+    if (
+        book.type ===
+        "digital"
+    ) {
+
+        badge = `
+
+            <span class="badge badge-digital">
+                Novel Digital
+            </span>
+
+        `;
+
+
+        platform = `
+
+            <span class="platform">
+
+                💻 ${book.platform}
+
+            </span>
+
+        `;
+
+
+        buttonClass =
+            "btn-digital";
+
+    }
+
+    else {
+
+        badge = `
+
+            <span class="badge badge-fisik">
+                Buku Fisik
+            </span>
+
+        `;
+
+    }
+
+
+
+    if (
+        book.rating
+    ) {
+
+        rating = `
+
+            <div class="rating">
+
+                ★★★★★
+
+                <span>
+
+                    ${book.rating}
+                    ·
+                    ${book.reviews}
+
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+
+    const card =
+        document.createElement(
+            "article"
+        );
+
+
+    card.className =
+        "book-card";
+
+
+    card.dataset.type =
+        book.type;
+
+
+    card.dataset.category =
+        book.category
+            .toLowerCase();
+
+
+    card.dataset.title =
+        book.title
+            .toLowerCase();
+
+
+    card.dataset.author =
+        book.author
+            .toLowerCase();
+
+
+
+    card.innerHTML = `
+
+        <div class="cover-wrapper">
+
+            <img
+                class="book-cover"
+                src="${book.cover}"
+                alt="Cover ${book.title}"
+                loading="lazy"
+            >
+
+            ${badge}
+
+        </div>
+
+
+        <div class="book-info">
+
+
+            <div class="book-category">
+
+                ${book.category}
+
+            </div>
+
+
+            <h3 class="book-title">
+
+                ${book.title}
+
+            </h3>
+
+
+            <p class="book-author">
+
+                ${book.author}
+
+            </p>
+
+
+            ${platform}
+
+
+            ${rating}
+
+
+            <div class="book-action">
+
+                <a
+                    href="detail-buku.html?id=${id}"
+                    class="btn ${buttonClass}"
+                >
+
+                    Lihat Detail
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    `;
+
+
+    return card;
+
+}
+
+
+
+/* =========================================
+   RENDER KARYA PENULIS
+========================================= */
+
+function renderAuthorBooks() {
+
+
+    authorBooks.innerHTML =
+        "";
+
+
+    Object.entries(
+        books
+    )
+    .filter(
+        ([id, book]) =>
+            book.type ===
+            "digital"
+    )
+    .forEach(
+        ([id, book]) => {
+
+            authorBooks.appendChild(
+
+                createBookCard(
+                    id,
+                    book
+                )
+
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   RENDER BUKU POPULER
+========================================= */
+
+function renderPopularBooks() {
+
+
+    popularBooks.innerHTML =
+        "";
+
+
+    Object.entries(
+        books
+    )
+    .filter(
+        ([id, book]) =>
+            book.type ===
+            "fisik"
+    )
+    .forEach(
+        ([id, book]) => {
+
+            popularBooks.appendChild(
+
+                createBookCard(
+                    id,
+                    book
+                )
+
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================
+   SEMUA CARD
+========================================= */
+
+function getAllCards() {
+
+    return document.querySelectorAll(
+        ".book-card"
+    );
+
+}
+
+
+
+/* =========================================
+   SEARCH & FILTER
+========================================= */
+
+let activeFilter =
+    "semua";
+
+
+function applyFilter() {
+
+
+    const keyword =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    const cards =
+        getAllCards();
+
+
+    let visible =
+        0;
+
+
+    cards.forEach(
+        function(card) {
+
+
+            const title =
+                card.dataset.title;
+
+
+            const author =
+                card.dataset.author;
+
+
+            const category =
+                card.dataset.category;
+
+
+            const type =
+                card.dataset.type;
+
+
+            const matchesSearch =
+
+                title.includes(
+                    keyword
+                )
+
+                ||
+
+                author.includes(
+                    keyword
+                )
+
+                ||
+
+                category.includes(
+                    keyword
+                );
+
+
+            let matchesFilter =
+                true;
+
+
+            if (
+                activeFilter ===
+                "digital"
+            ) {
+
+                matchesFilter =
+                    type ===
+                    "digital";
+
+            }
+
+
+            else if (
+                activeFilter ===
+                "fisik"
+            ) {
+
+                matchesFilter =
+                    type ===
+                    "fisik";
+
+            }
+
+
+            else if (
+                activeFilter !==
+                "semua"
+            ) {
+
+                matchesFilter =
+                    category.includes(
+                        activeFilter
+                            .toLowerCase()
+                    );
+
+            }
+
+
+            if (
+                matchesSearch &&
+                matchesFilter
+            ) {
+
+                card.style.display =
+                    "";
+
+                visible++;
+
+            }
+
+            else {
+
+                card.style.display =
+                    "none";
+
+            }
+
+        }
+    );
+
+
+    if (
+        visible ===
+        0
+    ) {
+
+        emptyResult.style.display =
+            "block";
+
+    }
+
+    else {
+
+        emptyResult.style.display =
+            "none";
+
+    }
+
+}
+
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+searchInput.addEventListener(
+    "input",
+    applyFilter
+);
+
+
+
+/* =========================================
+   FILTER BUTTON
+========================================= */
+
+filterButtons.forEach(
+    function(button) {
+
+
+        button.addEventListener(
+            "click",
+            function() {
+
+
+                filterButtons.forEach(
+                    function(btn) {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                activeFilter =
+                    button.dataset.filter;
+
+
+                applyFilter();
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =========================================
+   INITIAL LOAD
+========================================= */
+
+renderAuthorBooks();
+
+renderPopularBooks();
+
+applyFilter();
+
+
+</script>
+
+
+</body>
+
+</html>
