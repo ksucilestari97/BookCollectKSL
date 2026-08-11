@@ -74,8 +74,7 @@
 
             color: white;
 
-            padding:
-                8px 15px;
+            padding: 8px 15px;
 
             border-radius: 5px;
 
@@ -88,7 +87,7 @@
 
             width: 88%;
 
-            max-width: 1200px;
+            max-width: 1250px;
 
             margin: 35px auto;
 
@@ -183,6 +182,8 @@
 
             padding: 30px;
 
+            margin-bottom: 30px;
+
         }
 
 
@@ -218,6 +219,8 @@
 
             padding: 13px;
 
+            white-space: nowrap;
+
         }
 
 
@@ -227,6 +230,8 @@
 
             border-bottom:
                 1px solid #ded0bb;
+
+            vertical-align: middle;
 
         }
 
@@ -245,7 +250,7 @@
 
             cursor: pointer;
 
-            margin-right: 4px;
+            margin: 2px;
 
         }
 
@@ -264,6 +269,24 @@
             background: #98483e;
 
             color: white;
+
+        }
+
+
+        .return {
+
+            background: #765331;
+
+            color: white;
+
+        }
+
+
+        .approve:hover,
+        .reject:hover,
+        .return:hover {
+
+            opacity: .85;
 
         }
 
@@ -295,6 +318,24 @@
         }
 
 
+        .returned {
+
+            color: #5c625c;
+
+            font-weight: bold;
+
+        }
+
+
+        .late {
+
+            color: #a33c30;
+
+            font-weight: bold;
+
+        }
+
+
         .empty {
 
             text-align: center;
@@ -306,7 +347,21 @@
         }
 
 
-        @media(max-width:850px) {
+        .overdue {
+
+            background: #f8e2dc;
+
+        }
+
+
+        .normal {
+
+            color: #55704f;
+
+        }
+
+
+        @media(max-width:900px) {
 
             .stats {
 
@@ -334,6 +389,12 @@
 
             }
 
+            .title h1 {
+
+                font-size: 28px;
+
+            }
+
         }
 
     </style>
@@ -348,7 +409,9 @@
 
 
     <div class="logo">
+
         📚 Perpustakaan Nusantara
+
     </div>
 
 
@@ -376,8 +439,7 @@
         </h1>
 
         <p>
-            Kelola permintaan peminjaman
-            buku anggota.
+            Kelola peminjaman dan pengembalian buku anggota.
         </p>
 
     </div>
@@ -425,13 +487,13 @@
 
             <div
                 class="stat-number"
-                id="approved"
+                id="borrowed"
             >
                 0
             </div>
 
             <div class="stat-text">
-                Disetujui
+                Sedang Dipinjam
             </div>
 
         </div>
@@ -441,13 +503,13 @@
 
             <div
                 class="stat-number"
-                id="rejected"
+                id="returned"
             >
                 0
             </div>
 
             <div class="stat-text">
-                Ditolak
+                Sudah Dikembalikan
             </div>
 
         </div>
@@ -457,13 +519,13 @@
 
 
 
-    <!-- PEMINJAMAN -->
+    <!-- PERMINTAAN PEMINJAMAN -->
 
     <section class="panel">
 
 
         <h2>
-            📋 Permintaan Peminjaman
+            📋 Daftar Peminjaman
         </h2>
 
 
@@ -483,7 +545,11 @@
                     </th>
 
                     <th>
-                        Tanggal
+                        Tanggal Pinjam
+                    </th>
+
+                    <th>
+                        Jatuh Tempo
                     </th>
 
                     <th>
@@ -519,7 +585,10 @@
 <script>
 
 
-/* CEK LOGIN PETUGAS */
+/* ==================================================
+   CEK LOGIN PETUGAS
+================================================== */
+
 
 if (
     localStorage.getItem(
@@ -534,7 +603,66 @@ if (
 
 
 
-/* TAMPILKAN DATA */
+/* ==================================================
+   HITUNG JATUH TEMPO
+   7 HARI DARI TANGGAL PERSETUJUAN
+================================================== */
+
+
+function hitungJatuhTempo() {
+
+    const tanggal =
+        new Date();
+
+    tanggal.setDate(
+        tanggal.getDate() + 7
+    );
+
+
+    return tanggal.toLocaleDateString(
+        "id-ID"
+    );
+
+}
+
+
+
+/* ==================================================
+   CEK TERLAMBAT
+================================================== */
+
+
+function sudahJatuhTempo(
+    tanggalTempo
+) {
+
+    if (!tanggalTempo) {
+
+        return false;
+
+    }
+
+
+    const sekarang =
+        new Date();
+
+
+    const tempo =
+        new Date(
+            tanggalTempo
+        );
+
+
+    return sekarang > tempo;
+
+}
+
+
+
+/* ==================================================
+   TAMPILKAN DATA
+================================================== */
+
 
 function tampilkanData() {
 
@@ -558,15 +686,20 @@ function tampilkanData() {
 
     let pending = 0;
 
-    let approved = 0;
+    let borrowed = 0;
 
-    let rejected = 0;
+    let returned = 0;
 
 
 
     loans.forEach(
-        function(loan, index) {
+        function(
+            loan,
+            index
+        ) {
 
+
+            /* STATISTIK */
 
             if (
                 loan.status ===
@@ -583,59 +716,23 @@ function tampilkanData() {
                 "Disetujui"
             ) {
 
-                approved++;
+                borrowed++;
 
             }
 
 
             if (
                 loan.status ===
-                "Ditolak"
+                "Dikembalikan"
             ) {
 
-                rejected++;
+                returned++;
 
             }
 
 
 
-            let action = "";
-
-
-            if (
-                loan.status ===
-                "Menunggu"
-            ) {
-
-
-                action = `
-
-                    <button
-                        class="btn approve"
-                        onclick="ubahStatus(${index}, 'Disetujui')"
-                    >
-                        Setujui
-                    </button>
-
-                    <button
-                        class="btn reject"
-                        onclick="ubahStatus(${index}, 'Ditolak')"
-                    >
-                        Tolak
-                    </button>
-
-                `;
-
-            }
-
-
-            else {
-
-                action = "-";
-
-            }
-
-
+            /* STATUS */
 
             let statusClass =
                 "pending";
@@ -663,10 +760,141 @@ function tampilkanData() {
             }
 
 
+            if (
+                loan.status ===
+                "Dikembalikan"
+            ) {
+
+                statusClass =
+                    "returned";
+
+            }
+
+
+
+            /* CEK JATUH TEMPO */
+
+            let tempoText =
+                "-";
+
+
+            let tempoClass =
+                "";
+
+
+            if (
+                loan.dueDate &&
+                loan.status === "Disetujui"
+            ) {
+
+                tempoText =
+                    loan.dueDate;
+
+
+                if (
+                    sudahJatuhTempo(
+                        loan.dueDate
+                    )
+                ) {
+
+                    tempoClass =
+                        "late";
+
+                    tempoText +=
+                        " (Terlambat)";
+
+                }
+
+                else {
+
+                    tempoClass =
+                        "normal";
+
+                }
+
+            }
+
+
+
+            /* TOMBOL AKSI */
+
+            let action = "-";
+
+
+            if (
+                loan.status ===
+                "Menunggu"
+            ) {
+
+                action = `
+
+                    <button
+                        class="btn approve"
+                        onclick="ubahStatus(
+                            ${index},
+                            'Disetujui'
+                        )"
+                    >
+
+                        Setujui
+
+                    </button>
+
+
+                    <button
+                        class="btn reject"
+                        onclick="ubahStatus(
+                            ${index},
+                            'Ditolak'
+                        )"
+                    >
+
+                        Tolak
+
+                    </button>
+
+                `;
+
+            }
+
+
+
+            else if (
+                loan.status ===
+                "Menunggu Pengembalian"
+            ) {
+
+                action = `
+
+                    <button
+                        class="btn return"
+                        onclick="ubahStatus(
+                            ${index},
+                            'Dikembalikan'
+                        )"
+                    >
+
+                        Konfirmasi Pengembalian
+
+                    </button>
+
+                `;
+
+            }
+
+
+
+            /* TABEL */
 
             table.innerHTML += `
 
-                <tr>
+                <tr
+                    class="${
+                        tempoClass === "late"
+                        ? "overdue"
+                        : ""
+                    }"
+                >
 
                     <td>
                         ${loan.member}
@@ -677,7 +905,15 @@ function tampilkanData() {
                     </td>
 
                     <td>
-                        ${loan.date}
+                        ${loan.borrowDate || loan.date}
+                    </td>
+
+                    <td
+                        class="${tempoClass}"
+                    >
+
+                        ${tempoText}
+
                     </td>
 
                     <td>
@@ -685,13 +921,17 @@ function tampilkanData() {
                         <span
                             class="${statusClass}"
                         >
+
                             ${loan.status}
+
                         </span>
 
                     </td>
 
                     <td>
+
                         ${action}
+
                     </td>
 
                 </tr>
@@ -703,6 +943,8 @@ function tampilkanData() {
 
 
 
+    /* JIKA KOSONG */
+
     if (
         loans.length === 0
     ) {
@@ -712,12 +954,11 @@ function tampilkanData() {
             <tr>
 
                 <td
-                    colspan="5"
+                    colspan="6"
                     class="empty"
                 >
 
-                    Belum ada permintaan
-                    peminjaman buku.
+                    Belum ada data peminjaman.
 
                 </td>
 
@@ -728,6 +969,8 @@ function tampilkanData() {
     }
 
 
+
+    /* UPDATE STATISTIK */
 
     document
         .getElementById("total")
@@ -742,21 +985,24 @@ function tampilkanData() {
 
 
     document
-        .getElementById("approved")
+        .getElementById("borrowed")
         .textContent =
-        approved;
+        borrowed;
 
 
     document
-        .getElementById("rejected")
+        .getElementById("returned")
         .textContent =
-        rejected;
+        returned;
 
 }
 
 
 
-/* UBAH STATUS */
+/* ==================================================
+   UBAH STATUS
+================================================== */
+
 
 function ubahStatus(
     index,
@@ -772,29 +1018,113 @@ function ubahStatus(
         ) || [];
 
 
-    loans[index].status =
-        status;
+    const loan =
+        loans[index];
+
+
+    /* JIKA DISETUJUI */
+
+    if (
+        status ===
+        "Disetujui"
+    ) {
+
+
+        loan.status =
+            "Disetujui";
+
+
+        loan.borrowDate =
+            new Date()
+            .toLocaleDateString(
+                "id-ID"
+            );
+
+
+        loan.dueDate =
+            hitungJatuhTempo();
+
+
+        alert(
+            "Peminjaman disetujui.\n\n" +
+            "Buku: " +
+            loan.book +
+            "\nJatuh tempo: " +
+            loan.dueDate
+        );
+
+    }
+
+
+
+    /* JIKA DITOLAK */
+
+    else if (
+        status ===
+        "Ditolak"
+    ) {
+
+
+        loan.status =
+            "Ditolak";
+
+
+        alert(
+            "Permintaan peminjaman ditolak."
+        );
+
+    }
+
+
+
+    /* JIKA DIKEMBALIKAN */
+
+    else if (
+        status ===
+        "Dikembalikan"
+    ) {
+
+
+        loan.status =
+            "Dikembalikan";
+
+
+        loan.returnDate =
+            new Date()
+            .toLocaleDateString(
+                "id-ID"
+            );
+
+
+        alert(
+            "Pengembalian buku berhasil dikonfirmasi."
+        );
+
+    }
 
 
     localStorage.setItem(
         "peminjaman",
-        JSON.stringify(loans)
+        JSON.stringify(
+            loans
+        )
     );
 
 
     tampilkanData();
 
-
-    alert(
-        "Status peminjaman berhasil diubah menjadi: " +
-        status
-    );
-
 }
 
 
 
-/* LOGOUT */
+tampilkanData();
+
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
 
 function logout() {
 
@@ -808,9 +1138,6 @@ function logout() {
         "login-petugas.html";
 
 }
-
-
-tampilkanData();
 
 
 </script>
