@@ -2077,7 +2077,135 @@ function borrowBook() {
 
 
 </script>
+<script>
 
+function pinjamBuku() {
+
+    /* CEK LOGIN ANGGOTA */
+
+    if (
+        localStorage.getItem("loginAnggota") !== "true"
+    ) {
+
+        alert(
+            "Silakan login sebagai anggota terlebih dahulu."
+        );
+
+        window.location.href =
+            "login-anggota.html";
+
+        return;
+    }
+
+
+    /* AMBIL DATA BUKU */
+
+    const judulBuku =
+        document.getElementById("judulBuku")
+        ? document.getElementById("judulBuku").textContent.trim()
+        : "Buku Pilihan";
+
+
+    /* NAMA ANGGOTA */
+
+    const namaAnggota =
+        localStorage.getItem("namaAnggota")
+        || "Anggota";
+
+
+    /* TANGGAL */
+
+    const tanggal =
+        new Date().toLocaleDateString(
+            "id-ID"
+        );
+
+
+    /* AMBIL DATA PEMINJAMAN */
+
+    let peminjaman =
+        JSON.parse(
+            localStorage.getItem(
+                "peminjaman"
+            )
+        ) || [];
+
+
+    /* CEK APAKAH BUKU SUDAH DIMINTA */
+
+    const sudahMeminta =
+        peminjaman.some(
+            function(data) {
+
+                return (
+                    data.book === judulBuku &&
+                    data.member === namaAnggota &&
+                    data.status === "Menunggu"
+                );
+
+            }
+        );
+
+
+    if (sudahMeminta) {
+
+        alert(
+            "Anda sudah mengajukan peminjaman buku ini dan masih menunggu persetujuan petugas."
+        );
+
+        return;
+    }
+
+
+    /* BUAT DATA PEMINJAMAN */
+
+    const dataBaru = {
+
+        member:
+            namaAnggota,
+
+        book:
+            judulBuku,
+
+        date:
+            tanggal,
+
+        status:
+            "Menunggu"
+
+    };
+
+
+    /* SIMPAN */
+
+    peminjaman.push(
+        dataBaru
+    );
+
+
+    localStorage.setItem(
+        "peminjaman",
+        JSON.stringify(
+            peminjaman
+        )
+    );
+
+
+    /* INFORMASI */
+
+    alert(
+        "Permintaan peminjaman berhasil dikirim. Silakan menunggu persetujuan petugas."
+    );
+
+
+    /* KE DASHBOARD ANGGOTA */
+
+    window.location.href =
+        "dashboard-anggota.html";
+
+}
+
+</script>
 
 </body>
 
